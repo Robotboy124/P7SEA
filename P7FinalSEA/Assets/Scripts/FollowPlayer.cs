@@ -23,6 +23,7 @@ public class FollowPlayer : MonoBehaviour
         transform.LookAt(playerPos.position + randomPos);
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        Debug.Log(damaging.health);
     }
 
     public void SparkExplode()

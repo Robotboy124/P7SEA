@@ -21,7 +21,7 @@ public class ElecWall : MonoBehaviour
     {
         if(other.gameObject == GameObject.Find("Player"))
         {
-            other.gameObject.transform.position = new Vector3 (0, 1, 0);
+            other.gameObject.transform.position = other.gameObject.GetComponent<PlayerControls>().checkpoint.position;
             other.gameObject.GetComponent<Damageable>().Damaged(damage);
         }
     }

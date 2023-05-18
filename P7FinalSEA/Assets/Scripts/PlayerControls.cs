@@ -7,9 +7,12 @@ public class PlayerControls : MonoBehaviour
 {
     float left;
     float forward;
+    public float speed;
     public float fireRateInitial = 0.49f;
     public float fireRate;
+    public Transform checkpoint;
     bool grounded = true;
+    bool slamming = false;
     public GameObject[] projHit;
     public GameObject[] projTrails;
     public float[] reloadTimes;
@@ -22,6 +25,7 @@ public class PlayerControls : MonoBehaviour
     public float maxDashStamina;
     public GameObject parryTrail;
     public GameObject parryEffect;
+    public GameObject slamEffect;
     float dashStamina;
     bool dashing = false;
     float globalGravity = -0.9f;
@@ -67,13 +71,13 @@ public class PlayerControls : MonoBehaviour
         forward = Input.GetAxis("Vertical");
         if (!dashing)
         {
-            transform.Translate(Vector3.forward * 15f * forward * Time.deltaTime);
-            transform.Translate(Vector3.right * 15f * left * Time.deltaTime);
+            transform.Translate(Vector3.forward * speed * forward * Time.deltaTime);
+            transform.Translate(Vector3.right * speed * left * Time.deltaTime);
         }
         transform.rotation = Quaternion.Euler(new Vector3(0, GameObject.Find("PlayerCam").transform.localEulerAngles.y, 0));
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
-            rb.AddRelativeForce(Vector3.up*10f, ForceMode.Impulse);
+            rb.AddRelativeForce(Vector3.up*12f, ForceMode.Impulse);
             grounded = false;
         }
     }
@@ -87,12 +91,18 @@ public class PlayerControls : MonoBehaviour
                 dashStamina -= Time.deltaTime;
                 dashing = true;
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                transform.Translate(Vector3.forward * 30f * Time.deltaTime);
+                transform.Translate(Vector3.forward * speed * 2f * Time.deltaTime);
             }
         }
         else
         {
             dashing = false;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !grounded)
+        {
+            rb.velocity = Vector3.zero;
+            rb.AddForce(Vector3.down * 40f, ForceMode.Impulse);
+            slamming = true;
         }
         if (Input.GetKeyDown(KeyCode.LeftShift) && !grounded)
         {
@@ -100,7 +110,7 @@ public class PlayerControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space) && !grounded && dashCount == 1 && !dashing)
         {
-            rb.AddRelativeForce(Vector3.up*10f, ForceMode.Impulse);
+            rb.AddRelativeForce(Vector3.up*12f, ForceMode.Impulse);
             dashCount++;
             grounded = false;
         }
@@ -199,6 +209,11 @@ public class PlayerControls : MonoBehaviour
         {
             grounded = true;
             dashCount = 0;
+            if (slamming)
+            {
+                Instantiate(slamEffect, transform.position, Quaternion.identity);
+                slamming = false;
+            }
         }
         if (collision.gameObject.GetComponent<DamageField>() != null && parryTimer > 0)
         {
