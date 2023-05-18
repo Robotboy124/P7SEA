@@ -3,19 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Spark
+  - DashTarget
+  - ElecAttack
+  - Wood
+  - ElecEnemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wood
   - Water
   - UI
+  - Player
   - 
   - 
   - 
-  - 
-  - 
+  - TrailTrigger
   - 
   - 
   - 
