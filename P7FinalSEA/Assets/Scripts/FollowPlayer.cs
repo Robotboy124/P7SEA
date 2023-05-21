@@ -6,9 +6,11 @@ public class FollowPlayer : MonoBehaviour
 {
     public GameObject explodeParticle;
     public float speed;
+    public bool spawning;
     Damageable damaging;
     Transform playerPos;
     Vector3 randomPos;
+    bool chase;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +22,15 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(playerPos.position + randomPos);
-
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        Debug.Log(damaging.health);
+        if (Vector3.Distance(playerPos.position, transform.position) < 40f)
+        {
+            transform.LookAt(playerPos.position + randomPos);
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        }
+        if (damaging.health <= 0 && spawning)
+        {
+            GameObject.Find("Spark Spawner").GetComponent<SparkSpawner>().SparkSpawn();
+        }
     }
 
     public void SparkExplode()

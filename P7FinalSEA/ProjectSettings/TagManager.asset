@@ -9,6 +9,7 @@ TagManager:
   - ElecAttack
   - Wood
   - ElecEnemy
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Tutorial
   - 
   - 
   - TrailTrigger

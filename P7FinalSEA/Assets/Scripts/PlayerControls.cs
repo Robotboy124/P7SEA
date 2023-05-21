@@ -11,8 +11,8 @@ public class PlayerControls : MonoBehaviour
     public float fireRateInitial = 0.49f;
     public float fireRate;
     public Transform checkpoint;
-    bool grounded = true;
-    bool slamming = false;
+    public bool grounded = true;
+    public bool slamming = false;
     public GameObject[] projHit;
     public GameObject[] projTrails;
     public float[] reloadTimes;
@@ -21,15 +21,17 @@ public class PlayerControls : MonoBehaviour
     public float parryTimer = 0f;
     float parryCooldown = 0f;
     float parryEffects = 2f;
-    float dashCount = 0f;
+    public float dashCount = 0f;
     public float maxDashStamina;
     public GameObject parryTrail;
     public GameObject parryEffect;
     public GameObject slamEffect;
+    public GameObject tutorialText;
     float dashStamina;
     bool dashing = false;
     float globalGravity = -0.9f;
     public float gravityScale = 1.0f;
+    public float jumpForce = 13f;
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -77,7 +79,7 @@ public class PlayerControls : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, GameObject.Find("PlayerCam").transform.localEulerAngles.y, 0));
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
-            rb.AddRelativeForce(Vector3.up*12f, ForceMode.Impulse);
+            rb.AddRelativeForce(Vector3.up*jumpForce, ForceMode.Impulse);
             grounded = false;
         }
     }
@@ -101,8 +103,12 @@ public class PlayerControls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl) && !grounded)
         {
             rb.velocity = Vector3.zero;
-            rb.AddForce(Vector3.down * 40f, ForceMode.Impulse);
+            rb.AddForce(Vector3.down * 80f, ForceMode.Impulse);
             slamming = true;
+        }
+        if (Input.GetKey(KeyCode.LeftControl) && !grounded)
+        {
+            rb.AddForce(Vector3.down*80f*Time.deltaTime, ForceMode.Impulse);
         }
         if (Input.GetKeyDown(KeyCode.LeftShift) && !grounded)
         {
@@ -110,7 +116,7 @@ public class PlayerControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space) && !grounded && dashCount == 1 && !dashing)
         {
-            rb.AddRelativeForce(Vector3.up*12f, ForceMode.Impulse);
+            rb.AddRelativeForce(Vector3.up*jumpForce, ForceMode.Impulse);
             dashCount++;
             grounded = false;
         }
@@ -205,16 +211,6 @@ public class PlayerControls : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == GameObject.Find("Ground"))
-        {
-            grounded = true;
-            dashCount = 0;
-            if (slamming)
-            {
-                Instantiate(slamEffect, transform.position, Quaternion.identity);
-                slamming = false;
-            }
-        }
         if (collision.gameObject.GetComponent<DamageField>() != null && parryTimer > 0)
         {
             float damageParried = collision.gameObject.GetComponent<DamageField>().damage;
