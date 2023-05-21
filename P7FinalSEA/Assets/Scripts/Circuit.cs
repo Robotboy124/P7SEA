@@ -10,6 +10,7 @@ public class Circuit : MonoBehaviour
     public GameObject zapTrail;
     public GameObject groundLightning;
     public bool spawning;
+    bool raycast = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,22 +30,33 @@ public class Circuit : MonoBehaviour
 
     IEnumerator CircuitAttack()
     {
-        RaycastHit hit;
+        yield return new WaitForSeconds(2.0f);
+        raycast = true;
+        RaycastOnce();
+        yield return new WaitForEndOfFrame();
+        StopRaycast();
+        StartCoroutine(CircuitAttack());
+    }
 
-        if (Physics.Raycast(zapPoint.position, (player.transform.position - zapPoint.position), out hit, Mathf.Infinity))
+    void RaycastOnce()
+    {
+        if (raycast)
         {
-            if (hit.collider.gameObject != player)
+            RaycastHit hit;
+            if (Physics.Raycast(zapPoint.position, (player.transform.position - zapPoint.position), out hit, Vector3.Distance(player.transform.position, zapPoint.position)))
             {
-                StartCoroutine(CircuitAttack());
-            }
-            else
-            {
-                GameObject trail = Instantiate(zapTrail, transform.position, Quaternion.identity);
-                trail.GetComponent<ProjectileTrail>().SetPosition(hit.point, zapPoint.position);
-                Instantiate(groundLightning, hit.point, Quaternion.identity);
-                yield return new WaitForSeconds(2.0f);
+                if (hit.collider.gameObject == player)
+                {
+                    GameObject trail = Instantiate(zapTrail, transform.position, Quaternion.identity);
+                    trail.GetComponent<ProjectileTrail>().SetPosition(hit.point, zapPoint.position);
+                    Instantiate(groundLightning, hit.point, Quaternion.identity);
+                }
             }
         }
-        StartCoroutine(CircuitAttack());
+    }
+
+    void StopRaycast()
+    {
+        raycast = false;
     }
 }
