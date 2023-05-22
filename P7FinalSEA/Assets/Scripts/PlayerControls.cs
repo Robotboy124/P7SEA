@@ -71,7 +71,7 @@ public class PlayerControls : MonoBehaviour
     {
         left = Input.GetAxis("Horizontal");
         forward = Input.GetAxis("Vertical");
-        if (!dashing)
+        if (!dashing && !slamming)
         {
             transform.Translate(Vector3.forward * speed * forward * Time.deltaTime);
             transform.Translate(Vector3.right * speed * left * Time.deltaTime);
@@ -207,6 +207,12 @@ public class PlayerControls : MonoBehaviour
         {
             parryEffect.SetActive(false);
         }
+    }
+
+    public void Respawn()
+    {
+        GetComponent<Damageable>().health = 10;
+        transform.position = checkpoint.position;
     }
 
     void OnCollisionEnter(Collision collision)

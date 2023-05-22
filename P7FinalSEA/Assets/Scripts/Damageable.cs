@@ -10,6 +10,7 @@ public class Damageable : MonoBehaviour
     public bool healthBarr;
     public bool player;
     public float damageTaken;
+    public float healDistance;
     HealthBar healthBa;
     // Start is called before the first frame update
     void Start()
@@ -24,26 +25,31 @@ public class Damageable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health >= initialHealth)
+        {
+            health = initialHealth;
+        }
         if (healthBarr)
         {
             healthBa.UpdateValue(health);
         }
-        if (health <= 0)
+        if (health <= 0 && !player)
         {
+            if (Vector3.Distance(GameObject.Find("Player").transform.position, transform.position) < healDistance)
+            {
+                GameObject.Find("Player").GetComponent<Damageable>().Damaged(-initialHealth);
+            }
             Destroy(gameObject);
+        }
+        else if (health <= 0 && player)
+        {
+            GameObject.Find("Player").GetComponent<PlayerControls>().Respawn();
         }
     }
 
     public void Damaged(float damage)
     {
-        if (player && GameObject.Find("Player").GetComponent<PlayerControls>().parryTimer > 0)
-        {
-            return;
-        }
-        else
-        {
-            health -= damage;
-            damageTaken += damage;
-        }
+        health -= damage;
+        damageTaken += damage;
     }
 }

@@ -9,7 +9,7 @@ public class CircuitSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CircuitSpawn();
+        Spawn();
     }
 
     // Update is called once per frame
@@ -18,9 +18,9 @@ public class CircuitSpawner : MonoBehaviour
         
     }
 
-    public void CircuitSpawn()
+    public void Spawn()
     {
-        GameObject objectSpawning = Instantiate(circuit, transform.position + new Vector3 (Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)), Quaternion.identity);
+        GameObject objectSpawning = Instantiate(circuit, transform.position + new Vector3 (Random.Range(-10.0f, 10.0f), 0, Random.Range(-10.0f, 10.0f)), Quaternion.identity);
         objectSpawning.GetComponent<Circuit>().spawning = true;
     }
 }

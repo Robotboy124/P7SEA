@@ -27,10 +27,6 @@ public class FollowPlayer : MonoBehaviour
             transform.LookAt(playerPos.position + randomPos);
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
-        if (damaging.health <= 0 && spawning)
-        {
-            GameObject.Find("Spark Spawner").GetComponent<SparkSpawner>().SparkSpawn();
-        }
     }
 
     public void SparkExplode()

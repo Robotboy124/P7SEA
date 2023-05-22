@@ -9,7 +9,7 @@ public class SparkSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SparkSpawn();
+        Spawn();
     }
 
     // Update is called once per frame
@@ -18,9 +18,9 @@ public class SparkSpawner : MonoBehaviour
         
     }
 
-    public void SparkSpawn()
+    public void Spawn()
     {
-        GameObject objectSpawning = Instantiate(spark, transform.position + new Vector3 (Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)), Quaternion.identity);
+        GameObject objectSpawning = Instantiate(spark, transform.position + new Vector3 (Random.Range(-10.0f, 10.0f), Random.Range(-5.0f, 5.0f), Random.Range(-10.0f, 10.0f)), Quaternion.identity);
         objectSpawning.GetComponent<FollowPlayer>().spawning = true;
     }
 }
