@@ -5229,10 +5229,11 @@ MonoBehaviour:
   health: 30
   initialHealth: 0
   healths: {fileID: 0}
+  deathText: {fileID: 0}
   healthBarr: 0
   player: 0
   damageTaken: 0
-  healDistance: 30
+  healDistance: 20
 --- !u!96 &-446751072065881757
 TrailRenderer:
   serializedVersion: 2

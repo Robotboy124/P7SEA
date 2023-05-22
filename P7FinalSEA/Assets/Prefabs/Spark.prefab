@@ -5022,7 +5022,8 @@ MonoBehaviour:
   health: 15
   initialHealth: 0
   healths: {fileID: 0}
+  deathText: {fileID: 0}
   healthBarr: 0
   player: 0
   damageTaken: 0
-  healDistance: 20
+  healDistance: 15

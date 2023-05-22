@@ -33,6 +33,8 @@ public class PlayerControls : MonoBehaviour
     bool automatic = false;
     int burstFire = 0;
     public int maxAutoBurnOut;
+    int updatingBurnOutCounter;
+    public int burstCount = 0;
     float globalGravity = -0.9f;
     float burstTimer = 0.33f;
     public float gravityScale = 1.0f;
@@ -41,6 +43,7 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        updatingBurnOutCounter = maxAutoBurnOut;
         fireRateInitial = reloadTimes[Mathf.FloorToInt(weaponScrollWheel)];
         dashStamina = maxDashStamina;
         fireRate = fireRateInitial;
@@ -162,17 +165,24 @@ public class PlayerControls : MonoBehaviour
             automatic = false;
             burstFire = 0;
         }
-        if (Input.GetMouseButtonUp(0) && automatic && burstFire < maxAutoBurnOut)
+        if (Input.GetMouseButtonUp(0) && automatic && burstFire < updatingBurnOutCounter)
         {
+            updatingBurnOutCounter = burstFire;
             burstFire = 0;
+            burstCount++;
         }
-        if (!automatic || burstFire < maxAutoBurnOut)
+        if (!automatic || burstFire < updatingBurnOutCounter)
         {
             burnOutText.SetActive(false);
         }
+        if (!automatic)
+        {
+            updatingBurnOutCounter = maxAutoBurnOut;
+            burstCount = 0;
+        }
         if (inputFinder && fireRate <= 0)
         {
-            if (automatic && burstFire == maxAutoBurnOut)
+            if (automatic && (burstFire == updatingBurnOutCounter||burstCount == 3))
             {
                 burnOutText.SetActive(true);
             }
@@ -181,7 +191,7 @@ public class PlayerControls : MonoBehaviour
                 Vector3 startRaycast = transform.position;
                 RaycastHit hit;
                 LayerMask mask = 1<<LayerMask.GetMask("TrailTrigger");
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward + new Vector3 (randomRange * (UnityEngine.Random.Range(-1.0f, 1.0f)), Mathf.Tan(-GameObject.Find("PlayerCam").transform.localEulerAngles.x/180*Mathf.PI) + randomRange * (UnityEngine.Random.Range(-1.0f, 1.0f)))), out hit, Mathf.Infinity, mask))
+                if (Physics.Raycast(GameObject.Find("PlayerCam").transform.position, transform.TransformDirection(Vector3.forward + new Vector3 (randomRange * (UnityEngine.Random.Range(-1.0f, 1.0f)), Mathf.Tan(-GameObject.Find("PlayerCam").transform.localEulerAngles.x/180*Mathf.PI) + randomRange * (UnityEngine.Random.Range(-1.0f, 1.0f)))), out hit, Mathf.Infinity, mask))
                 {
                     fireRate = fireRateInitial;
                     Instantiate(projHit[actualScroll], hit.point, Quaternion.identity);
@@ -240,6 +250,7 @@ public class PlayerControls : MonoBehaviour
     {
         GetComponent<Damageable>().health = 100;
         transform.position = checkpoint.position;
+        GetComponent<Damageable>().damageTaken = 0;
     }
 
     void OnCollisionEnter(Collision collision)

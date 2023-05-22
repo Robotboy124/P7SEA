@@ -52,7 +52,7 @@ public class Current : MonoBehaviour
 
     IEnumerator CurrentAttack()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1.5f);
         raycast = true;
     }
 
@@ -70,7 +70,8 @@ public class Current : MonoBehaviour
         if (raycast)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, (player.transform.position - transform.position), out hit, Mathf.Infinity))
+            LayerMask mask = LayerMask.GetMask("Tutorial");
+            if (Physics.Raycast(transform.position, (GameObject.Find("PlayerCam").transform.position - transform.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, zapPoint.transform.position), mask))
             {
                 if (hit.collider.gameObject == player && projectileReady)
                 {
@@ -101,6 +102,7 @@ public class Current : MonoBehaviour
         else
         {
             transform.position = transformStart;
+            teleport++;
         }
     }
 }

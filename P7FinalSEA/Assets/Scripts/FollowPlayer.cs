@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class FollowPlayer : MonoBehaviour
 {
@@ -16,16 +17,21 @@ public class FollowPlayer : MonoBehaviour
     {
         damaging = GetComponent<Damageable>();
         playerPos = GameObject.Find("Player").transform;
-        randomPos = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f));
+        randomPos = new Vector3(Random.Range(-1.25f, 1.25f), Random.Range(-1.25f, 1.25f), Random.Range(-1.25f, 1.25f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(playerPos.position, transform.position) < 40f)
+        RaycastHit hit;
+        LayerMask mask = LayerMask.GetMask("Tutorial");
+        if (Physics.Raycast(transform.position, (GameObject.Find("PlayerCam").transform.position - transform.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, transform.position), mask))
         {
-            transform.LookAt(playerPos.position + randomPos);
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            if (hit.collider.gameObject == playerPos.gameObject)
+            {
+                transform.LookAt(playerPos.position + randomPos);
+                transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            }
         }
     }
 

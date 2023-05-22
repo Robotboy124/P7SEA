@@ -37,13 +37,14 @@ public class Circuit : MonoBehaviour
         if (raycast)
         {
             RaycastHit hit;
-            if (Physics.Raycast(zapPoint.position, (player.transform.position - zapPoint.position), out hit, Mathf.Infinity))
+            LayerMask mask = LayerMask.GetMask("Tutorial");
+            if (Physics.Raycast(zapPoint.position, (GameObject.Find("PlayerCam").transform.position - zapPoint.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, zapPoint.position), mask))
             {
                 if (hit.collider.gameObject == player)
                 {
                     GameObject trail = Instantiate(zapTrail, transform.position, Quaternion.identity);
-                    trail.GetComponent<ProjectileTrail>().SetPosition(hit.point, zapPoint.position);
-                    Instantiate(groundLightning, hit.point, Quaternion.identity);
+                    trail.GetComponent<ProjectileTrail>().SetPosition(new Vector3(hit.point.x, player.transform.position.y - player.GetComponent<BoxCollider>().size.y / 2, hit.point.z), zapPoint.position);
+                    Instantiate(groundLightning, new Vector3(hit.point.x, player.transform.position.y-player.GetComponent<BoxCollider>().size.y/2, hit.point.z), Quaternion.identity);
                     StopRaycast();
                 }
                 else 

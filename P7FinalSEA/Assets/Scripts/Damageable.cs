@@ -70,6 +70,9 @@ public class Damageable : MonoBehaviour
     public void Damaged(float damage)
     {
         health -= damage;
-        damageTaken += damage;
+        if (damage > 0)
+        {
+            damageTaken += damage;
+        }
     }
 }
