@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Damageable : MonoBehaviour
 {
     public float health = 100;
     public float initialHealth;
     public GameObject healths;
+    public GameObject deathText;
+    int deathCount = 0;
     public bool healthBarr;
     public bool player;
     public float damageTaken;
@@ -43,7 +46,24 @@ public class Damageable : MonoBehaviour
         }
         else if (health <= 0 && player)
         {
+            deathCount += 1;
             GameObject.Find("Player").GetComponent<PlayerControls>().Respawn();
+            if (deathText == null && !player)
+            {
+                return;
+            }
+            else if (deathText != null && player)
+            {
+                deathText.GetComponent<TMP_Text>().text = "Deaths: " + deathCount;
+            }
+            if (GameObject.Find("Kilosoult") == null)
+            {
+                return;
+            }
+            else
+            {
+                GameObject.Find("Kilosoult").GetComponent<Damageable>().health = GameObject.Find("Kilosoult").GetComponent<Damageable>().initialHealth;
+            }
         }
     }
 

@@ -58,7 +58,7 @@ public class Current : MonoBehaviour
 
     IEnumerator Stopper()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 2; i++)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -94,7 +94,6 @@ public class Current : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Entered");
         if(other.gameObject.GetComponent<ElecWall>() == null)
         {
             return;

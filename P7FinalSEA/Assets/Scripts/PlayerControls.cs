@@ -27,9 +27,14 @@ public class PlayerControls : MonoBehaviour
     public GameObject parryEffect;
     public GameObject slamEffect;
     public GameObject tutorialText;
+    public GameObject burnOutText;
     float dashStamina;
     bool dashing = false;
+    bool automatic = false;
+    int burstFire = 0;
+    public int maxAutoBurnOut;
     float globalGravity = -0.9f;
+    float burstTimer = 0.33f;
     public float gravityScale = 1.0f;
     public float jumpForce = 13f;
     Rigidbody rb;
@@ -148,40 +153,62 @@ public class PlayerControls : MonoBehaviour
         {
             inputFinder = Input.GetMouseButton(0);
             randomRange = UnityEngine.Random.Range(-0.035f, 0.035f);
+            automatic = true;
         }
         else if (!projTrails[actualScroll].GetComponent<DamageField>().automatic)
         {
             inputFinder = Input.GetMouseButtonDown(0);
             randomRange = UnityEngine.Random.Range(0f, 0f);
+            automatic = false;
+            burstFire = 0;
+        }
+        if (Input.GetMouseButtonUp(0) && automatic && burstFire < maxAutoBurnOut)
+        {
+            burstFire = 0;
+        }
+        if (!automatic || burstFire < maxAutoBurnOut)
+        {
+            burnOutText.SetActive(false);
         }
         if (inputFinder && fireRate <= 0)
         {
-            Vector3 startRaycast = transform.position;
-            RaycastHit hit;
-            LayerMask mask = 1<<LayerMask.GetMask("TrailTrigger");
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward + new Vector3 (randomRange * (UnityEngine.Random.Range(-1.0f, 1.0f)), Mathf.Tan(-GameObject.Find("PlayerCam").transform.localEulerAngles.x/180*Mathf.PI) + randomRange * (UnityEngine.Random.Range(-1.0f, 1.0f)))), out hit, Mathf.Infinity, mask))
+            if (automatic && burstFire == maxAutoBurnOut)
             {
-                fireRate = fireRateInitial;
-                Instantiate(projHit[actualScroll], hit.point, Quaternion.identity);
-                projTrails[actualScroll].GetComponent<ProjectileTrail>().SetPosition(hit.point, startRaycast);
-                Damageable damaging = hit.collider.gameObject.GetComponent<Damageable>();
-                if (damaging == null)
+                burnOutText.SetActive(true);
+            }
+            else
+            {
+                Vector3 startRaycast = transform.position;
+                RaycastHit hit;
+                LayerMask mask = 1<<LayerMask.GetMask("TrailTrigger");
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward + new Vector3 (randomRange * (UnityEngine.Random.Range(-1.0f, 1.0f)), Mathf.Tan(-GameObject.Find("PlayerCam").transform.localEulerAngles.x/180*Mathf.PI) + randomRange * (UnityEngine.Random.Range(-1.0f, 1.0f)))), out hit, Mathf.Infinity, mask))
                 {
-                    return;
-                }
-                DamageField damageScript = projTrails[actualScroll].GetComponent<DamageField>();
-                if (damageScript == null)
-                {
-                    return;
-                }
-                else
-                {
-                    float damageAmount = damageScript.damage;
-                    damaging.Damaged(damageAmount);
-                    if (damageScript.eleCannon)
+                    fireRate = fireRateInitial;
+                    Instantiate(projHit[actualScroll], hit.point, Quaternion.identity);
+                    projTrails[actualScroll].GetComponent<ProjectileTrail>().SetPosition(hit.point, startRaycast);
+                    Damageable damaging = hit.collider.gameObject.GetComponent<Damageable>();
+                    if (automatic)
                     {
-                        damageAmount = 0;
-                        GetComponent<Damageable>().damageTaken = 0;
+                        burstFire++;
+                    }
+                    if (damaging == null)
+                    {
+                        return;
+                    }
+                    DamageField damageScript = projTrails[actualScroll].GetComponent<DamageField>();
+                    if (damageScript == null)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        float damageAmount = damageScript.damage;
+                        damaging.Damaged(damageAmount);
+                        if (damageScript.eleCannon)
+                        {
+                            damageAmount = 0;
+                            GetComponent<Damageable>().damageTaken = 0;
+                        }
                     }
                 }
             }
@@ -211,7 +238,7 @@ public class PlayerControls : MonoBehaviour
 
     public void Respawn()
     {
-        GetComponent<Damageable>().health = 10;
+        GetComponent<Damageable>().health = 100;
         transform.position = checkpoint.position;
     }
 

@@ -46,6 +46,11 @@ public class Kilosoult : MonoBehaviour
             phaseMulti = 2;
             phaseTwoLightning.SetActive(true);
         }
+        else
+        {
+            phaseMulti = 1;
+            phaseTwoLightning.SetActive(false);
+        }
     }
 
     IEnumerator AttackCoroutine()
@@ -66,7 +71,7 @@ public class Kilosoult : MonoBehaviour
         }
         else
         {
-            if (damagin.health <= damagin.initialHealth *0.2f && soulTimer == 0)
+            if (damagin.health <= damagin.initialHealth *0.15f && soulTimer == 0)
             {
                 StartCoroutine(FranticCoroutine());
             }
