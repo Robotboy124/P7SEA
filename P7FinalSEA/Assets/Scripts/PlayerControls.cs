@@ -11,6 +11,7 @@ public class PlayerControls : MonoBehaviour
     public float fireRateInitial = 0.49f;
     public float fireRate;
     public Transform checkpoint;
+    public float minimumY;
     public bool grounded = true;
     public bool slamming = false;
     public GameObject[] projHit;
@@ -30,6 +31,7 @@ public class PlayerControls : MonoBehaviour
     public GameObject burnOutText;
     float dashStamina;
     bool dashing = false;
+    bool dasher = false;
     bool automatic = false;
     int burstFire = 0;
     public int maxAutoBurnOut;
@@ -90,13 +92,18 @@ public class PlayerControls : MonoBehaviour
             rb.AddRelativeForce(Vector3.up*jumpForce, ForceMode.Impulse);
             grounded = false;
         }
+        if (transform.position.y < minimumY)
+        {
+            transform.position = checkpoint.position;
+        }
     }
 
     void AdvancedMovement()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && !grounded)
+        if (Input.GetKey(KeyCode.LeftShift) && !grounded && dashCount != 2)
         {
-            if (dashStamina > 0)
+            dasher = true;
+            if (dashStamina > 0 && dasher)
             {
                 dashStamina -= Time.deltaTime;
                 dashing = true;
@@ -122,11 +129,13 @@ public class PlayerControls : MonoBehaviour
         {
             dashCount++;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !grounded && dashCount == 1 && !dashing)
+        if (Input.GetKeyDown(KeyCode.Space) && !grounded && dashCount == 1 && dashing)
         {
             rb.AddRelativeForce(Vector3.up*jumpForce, ForceMode.Impulse);
             dashCount++;
             grounded = false;
+            dashing = false;
+            dasher = false;
         }
     }
 

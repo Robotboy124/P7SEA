@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ElecWall : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class ElecWall : MonoBehaviour
         {
             other.gameObject.GetComponent<Damageable>().Damaged(damage);
             other.gameObject.transform.position = other.gameObject.GetComponent<PlayerControls>().checkpoint.position;
+            other.gameObject.GetComponent<PlayerControls>().tutorialText.GetComponent<TMP_Text>().text = "Oh yeah, those walls hurt you.";
         }
         else if (other.gameObject.GetComponent<Current>() != null)
         {
