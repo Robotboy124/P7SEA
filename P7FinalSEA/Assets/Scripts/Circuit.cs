@@ -37,8 +37,7 @@ public class Circuit : MonoBehaviour
         if (raycast)
         {
             RaycastHit hit;
-            LayerMask mask = LayerMask.GetMask("Tutorial");
-            if (Physics.Raycast(zapPoint.position, (GameObject.Find("PlayerCam").transform.position - zapPoint.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, zapPoint.position), mask))
+            if (Physics.Raycast(zapPoint.position, (GameObject.Find("PlayerCam").transform.position - zapPoint.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, zapPoint.position)))
             {
                 if (hit.collider.gameObject == player)
                 {

@@ -70,8 +70,7 @@ public class Current : MonoBehaviour
         if (raycast)
         {
             RaycastHit hit;
-            LayerMask mask = LayerMask.GetMask("Tutorial");
-            if (Physics.Raycast(transform.position, (GameObject.Find("PlayerCam").transform.position - transform.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, zapPoint.transform.position), mask))
+            if (Physics.Raycast(transform.position, (GameObject.Find("PlayerCam").transform.position - transform.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, zapPoint.transform.position)))
             {
                 if (hit.collider.gameObject == player && projectileReady)
                 {

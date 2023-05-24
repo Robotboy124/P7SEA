@@ -24,8 +24,7 @@ public class FollowPlayer : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask("Tutorial");
-        if (Physics.Raycast(transform.position, (GameObject.Find("PlayerCam").transform.position - transform.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, transform.position), mask))
+        if (Physics.Raycast(transform.position, (GameObject.Find("PlayerCam").transform.position - transform.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, transform.position)))
         {
             if (hit.collider.gameObject == playerPos.gameObject)
             {

@@ -21,7 +21,7 @@ public class CameraMove : MonoBehaviour
         votate = Input.GetAxis("Mouse Y");
         transform.RotateAround(transform.position, Vector3.up, rotate * 720 * sensitivity * Time.deltaTime);
         transform.Rotate(Vector3.right, votate * -720 * sensitivity* Time.deltaTime);
-        transform.position = GameObject.Find("Player").transform.position + Vector3.up;
+        transform.position = GameObject.Find("Player").transform.position + Vector3.up*0.5f;
         if (transform.rotation.x >= 90)
         {
             transform.rotation = Quaternion.Euler(new Vector3(90, transform.rotation.y, transform.rotation.z));
