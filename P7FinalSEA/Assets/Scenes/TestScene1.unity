@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26841237a31ffe4996cf7a3411b9f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spark: {fileID: 9190064843844720222, guid: b131b29e879f0df4e9b8da101e6f6636, type: 3}
+  spark: {fileID: 7909345420280191554, guid: b131b29e879f0df4e9b8da101e6f6636, type: 3}
   dashTarget: {fileID: 5975786452058501741, guid: b03a7b07064468840bb4e30d552bd409, type: 3}
   phaseDash: {fileID: 1830281823}
   dashTrail: {fileID: 1059079010}
@@ -3084,7 +3084,6 @@ MonoBehaviour:
   fireRateInitial: 0.49
   fireRate: 0
   checkpoint: {fileID: 10716562}
-  minimumY: -140
   grounded: 1
   slamming: 0
   projHit:
@@ -3107,6 +3106,7 @@ MonoBehaviour:
   slamEffect: {fileID: 4167555061807047925, guid: 3948fcbc2eb3b584792fed513cd9e001, type: 3}
   tutorialText: {fileID: 929542471}
   burnOutText: {fileID: 1511993603}
+  respawning: 0
   maxAutoBurnOut: 15
   gravityScale: 2.5
   jumpForce: 13
@@ -27147,10 +27147,6 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1156714475895951987, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
-      propertyPath: m_Size.z
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
 --- !u!1 &905582008
@@ -43341,7 +43337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303f3eecf79207408ca3a9d6da5a075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spark: {fileID: 9190064843844720222, guid: b131b29e879f0df4e9b8da101e6f6636, type: 3}
+  spark: {fileID: 7909345420280191554, guid: b131b29e879f0df4e9b8da101e6f6636, type: 3}
 --- !u!4 &1800192131
 Transform:
   m_ObjectHideFlags: 0
