@@ -160,6 +160,7 @@ public class Kilosoult : MonoBehaviour
         {
             StartCoroutine(AttackCoroutine());
             teleporting = true;
+            souled = false;
             StartCoroutine(TeleportCoroutine());
             StopCoroutine(ExplodeCoroutine());
         }
@@ -283,6 +284,7 @@ public class Kilosoult : MonoBehaviour
 
     IEnumerator FranticCoroutine()
     {
+<<<<<<< Updated upstream
         if (damagin.health > damagin.initialHealth * 0.15f)
         {
             StartCoroutine(AttackCoroutine());
@@ -301,6 +303,23 @@ public class Kilosoult : MonoBehaviour
             if (xLightningTimer >= 4)
             {
                 Instantiate(lightningX, new Vector3(Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
+=======
+        if (damagin.health > damagin.initialHealth*0.15f)
+        {
+            StartCoroutine(AttackCoroutine());
+        }
+        else
+        {
+            Vector3 randomTeleport = new Vector3(Random.Range(-19f, 19f), Random.Range(1f, roof.position.y-1), Random.Range(-19f, 19f));
+            GameObject teleportLocation = Instantiate(dashTarget, randomTeleport, Quaternion.identity);
+            yield return new WaitForSeconds(teleportTimer/1.5f);
+            xLightningTimer += 1;
+            transform.position = randomTeleport;
+            Destroy(teleportLocation);
+            if (xLightningTimer >= 2)
+            {
+                Instantiate(lightningX, new Vector3 (Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
+>>>>>>> Stashed changes
                 xLightningTimer = 0;
             }
             StartCoroutine(FranticCoroutine());

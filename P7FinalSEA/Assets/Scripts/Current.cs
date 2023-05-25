@@ -16,8 +16,6 @@ public class Current : MonoBehaviour
     GameObject player;
     Rigidbody rb;
     bool raycast = false;
-    bool shooting = false;
-    bool projectileReady = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,10 +56,7 @@ public class Current : MonoBehaviour
 
     IEnumerator Stopper()
     {
-        for (int i = 0; i < 2; i++)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForEndOfFrame();
         StopRaycast();
     }
 
@@ -70,18 +65,15 @@ public class Current : MonoBehaviour
         if (raycast)
         {
             RaycastHit hit;
+<<<<<<< Updated upstream
             if (Physics.Raycast(transform.position, (GameObject.Find("PlayerCam").transform.position - transform.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, zapPoint.transform.position)))
+=======
+            if (Physics.Raycast(transform.position, (GameObject.Find("Player").transform.position - transform.position), out hit, Mathf.Infinity))
+>>>>>>> Stashed changes
             {
-                if (hit.collider.gameObject == player && projectileReady)
-                {
-                    GameObject objectSpawning = Instantiate(projectile, zapPoint.transform.position, Quaternion.Euler((new Vector3(90+transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z))));
-                    objectSpawning.GetComponent<CurrentProj>().Starter();
-                    StartCoroutine(Stopper());
-                }
-                else
-                {
-                    StartCoroutine(Stopper());
-                }
+                GameObject objectSpawning = Instantiate(projectile, zapPoint.transform.position, Quaternion.Euler((new Vector3(90+transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z))));
+                objectSpawning.GetComponent<CurrentProj>().Starter();
+                StartCoroutine(Stopper());
             }
         }
     }

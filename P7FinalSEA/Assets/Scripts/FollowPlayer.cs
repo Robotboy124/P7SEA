@@ -24,9 +24,15 @@ public class FollowPlayer : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
+<<<<<<< Updated upstream
         if (Physics.Raycast(transform.position, (GameObject.Find("PlayerCam").transform.position - transform.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, transform.position)))
         {
             if (hit.collider.gameObject == playerPos.gameObject)
+=======
+        if (Physics.Raycast(transform.position, (GameObject.Find("PlayerCam").transform.position-transform.position), out hit, Mathf.Infinity))
+        {
+            if (hit.collider.gameObject == GameObject.Find("Player"))
+>>>>>>> Stashed changes
             {
                 transform.LookAt(playerPos.position + randomPos);
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);

@@ -13,7 +13,15 @@ public class CurrentProj : MonoBehaviour
     // Update is called once per frame
     public void Starter()
     {
-        StartCoroutine (Translating());
+        StartCoroutine(Translating());
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<Damageable>() == null)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator Translating()

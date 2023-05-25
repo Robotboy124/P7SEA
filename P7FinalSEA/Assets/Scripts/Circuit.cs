@@ -37,13 +37,22 @@ public class Circuit : MonoBehaviour
         if (raycast)
         {
             RaycastHit hit;
+<<<<<<< Updated upstream
             if (Physics.Raycast(zapPoint.position, (GameObject.Find("PlayerCam").transform.position - zapPoint.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, zapPoint.position)))
+=======
+            if (Physics.Raycast(zapPoint.position, (GameObject.Find("PlayerCam").transform.position - zapPoint.position), out hit, Mathf.Infinity))
+>>>>>>> Stashed changes
             {
                 if (hit.collider.gameObject == player)
                 {
                     GameObject trail = Instantiate(zapTrail, transform.position, Quaternion.identity);
+<<<<<<< Updated upstream
                     trail.GetComponent<ProjectileTrail>().SetPosition(new Vector3(hit.point.x, player.transform.position.y - player.GetComponent<BoxCollider>().size.y / 2, hit.point.z), zapPoint.position);
                     Instantiate(groundLightning, new Vector3(hit.point.x, player.transform.position.y-player.GetComponent<BoxCollider>().size.y/2, hit.point.z), Quaternion.identity);
+=======
+                    trail.GetComponent<ProjectileTrail>().SetPosition(new Vector3(hit.point.x, transform.position.y-1.5f, hit.point.z), zapPoint.position);
+                    Instantiate(groundLightning, new Vector3 (hit.point.x, transform.position.y - 1, hit.point.z), Quaternion.identity);
+>>>>>>> Stashed changes
                     StopRaycast();
                 }
                 else 

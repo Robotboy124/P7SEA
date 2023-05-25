@@ -32,5 +32,9 @@ public class DamageField : MonoBehaviour
         {
             collision.gameObject.GetComponent<Damageable>().Damaged(damage);
         }
+        else if (playerProj && collision.gameObject != GameObject.Find("Player") && collision.gameObject.GetComponent<Damageable>() != null)
+        {
+            collision.gameObject.GetComponent<Damageable>().Damaged(damage);
+        }
     }
 }

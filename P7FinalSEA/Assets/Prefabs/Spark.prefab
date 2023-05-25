@@ -5026,4 +5026,8 @@ MonoBehaviour:
   healthBarr: 0
   player: 0
   damageTaken: 0
+<<<<<<< Updated upstream
   healDistance: 15
+=======
+  healDistance: 10
+>>>>>>> Stashed changes

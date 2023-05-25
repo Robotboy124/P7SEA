@@ -477,6 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbbde6181d078f49bb82988cc4d8ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starter: {x: 0, y: 0, z: 0}
+  finisher: {x: 0, y: 0, z: 0}
   player: {fileID: 327373953}
 --- !u!4 &17173308
 Transform:
@@ -798,6 +800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbbde6181d078f49bb82988cc4d8ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starter: {x: 0, y: 0, z: 0}
+  finisher: {x: 0, y: 0, z: 0}
   player: {fileID: 327373953}
 --- !u!4 &40721477
 Transform:
@@ -825,7 +829,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!114 &40721479
 MonoBehaviour:
@@ -1423,7 +1427,7 @@ MonoBehaviour:
   healthBarr: 1
   player: 0
   damageTaken: 0
-  healDistance: 0
+  healDistance: 200
 --- !u!1001 &142924356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3076,6 +3080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  minimumY: -140
   fireRateInitial: 0.49
   fireRate: 0
   checkpoint: {fileID: 10716562}
@@ -3093,7 +3098,7 @@ MonoBehaviour:
   reloadTimes:
   - 3
   - 0.49
-  - 0.1
+  - 0.06666667
   parryTimer: 0.05
   dashCount: 0
   maxDashStamina: 2
@@ -3103,8 +3108,12 @@ MonoBehaviour:
   tutorialText: {fileID: 929542471}
   burnOutText: {fileID: 1511993603}
   maxAutoBurnOut: 15
+<<<<<<< Updated upstream
   burstCount: 0
   gravityScale: 2
+=======
+  gravityScale: 2.5
+>>>>>>> Stashed changes
   jumpForce: 13
 --- !u!65 &327373951
 BoxCollider:
@@ -3179,7 +3188,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1156714475895951984, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: tutorial
+<<<<<<< Updated upstream
       value: During a dash, you can double jump, but only once at a time.
+=======
+      value: During a dash, you can double jump, but only one at a time. (tl;dr SPACE
+        while holding SHIFT)
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951985, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_Name
@@ -9332,7 +9346,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951986, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< Updated upstream
       value: -15
+=======
+      value: -12.5
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951986, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9361,6 +9379,15 @@ PrefabInstance:
     - target: {fileID: 1156714475895951986, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1156714475895951987, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
+<<<<<<< Updated upstream
+      propertyPath: m_Size.z
+      value: 5
+=======
+      propertyPath: m_Size.x
+      value: 20
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951987, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_Size.z
@@ -27104,7 +27131,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951986, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< Updated upstream
       value: 15
+=======
+      value: 12.5
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951986, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27135,8 +27166,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951987, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_Size.x
       value: 20
+=======
+      propertyPath: m_Size.z
+      value: 5
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951987, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_Size.z
@@ -32301,7 +32337,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 125}
-  m_SizeDelta: {x: -200, y: 50}
+  m_SizeDelta: {x: -600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &929542473
 MonoBehaviour:
@@ -32350,8 +32386,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -32576,7 +32612,10 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+<<<<<<< Updated upstream
   - component: {fileID: 963194230}
+=======
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: MainCamera
@@ -32643,7 +32682,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.54, z: 0}
+  m_LocalPosition: {x: 80, y: 10, z: -200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32663,6 +32702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 1.2
+<<<<<<< Updated upstream
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32683,6 +32723,8 @@ MonoBehaviour:
   player: 0
   damageTaken: 0
   healDistance: 0
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &975043321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39302,6 +39344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbbde6181d078f49bb82988cc4d8ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starter: {x: 0, y: 0, z: 0}
+  finisher: {x: 0, y: 0, z: 0}
   player: {fileID: 327373953}
 --- !u!4 &1238155268
 Transform:
@@ -39773,8 +39817,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1156714475895951984, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: tutorial
-      value: Oh yeah, Scroll Wheel to switch weapons. | Also, walk through this again
-        to spawn enemies.
+      value: Oh yeah, Scroll Wheel to switch weapons. Press E for weapon explanation.
+        | Also, walk through this again to spawn enemies.
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951985, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_Name
@@ -39954,7 +39998,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!96 &1374407951
 TrailRenderer:
@@ -40067,6 +40111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbbde6181d078f49bb82988cc4d8ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starter: {x: 0, y: 0, z: 0}
+  finisher: {x: 0, y: 0, z: 0}
   player: {fileID: 327373953}
 --- !u!4 &1374407953
 Transform:
@@ -41902,7 +41948,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951986, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< Updated upstream
       value: -201
+=======
+      value: -200.5
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951986, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_LocalPosition.y
@@ -49900,7 +49950,7 @@ GameObject:
   - component: {fileID: 2087707184}
   - component: {fileID: 2087707183}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Death Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
