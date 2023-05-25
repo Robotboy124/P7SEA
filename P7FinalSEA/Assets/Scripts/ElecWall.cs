@@ -25,13 +25,9 @@ public class ElecWall : MonoBehaviour
         {
             other.gameObject.GetComponent<Damageable>().Damaged(damage);
             other.gameObject.transform.position = other.gameObject.GetComponent<PlayerControls>().checkpoint.position;
-<<<<<<< Updated upstream
-            other.gameObject.GetComponent<PlayerControls>().tutorialText.GetComponent<TMP_Text>().text = "Oh yeah, those walls hurt you.";
-=======
             other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             other.gameObject.GetComponent<PlayerControls>().respawning = true;
             other.gameObject.GetComponent<PlayerControls>().tutorialText.GetComponent<TMP_Text>().text = "Oh yeah, those hurt you.";
->>>>>>> Stashed changes
         }
         else if (other.gameObject.GetComponent<Current>() != null)
         {

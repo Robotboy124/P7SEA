@@ -65,11 +65,7 @@ public class Current : MonoBehaviour
         if (raycast)
         {
             RaycastHit hit;
-<<<<<<< Updated upstream
-            if (Physics.Raycast(transform.position, (GameObject.Find("PlayerCam").transform.position - transform.position), out hit, Vector3.Distance(GameObject.Find("PlayerCam").transform.position, zapPoint.transform.position)))
-=======
             if (Physics.Raycast(transform.position, (GameObject.Find("Player").transform.position - transform.position), out hit, Mathf.Infinity))
->>>>>>> Stashed changes
             {
                 GameObject objectSpawning = Instantiate(projectile, zapPoint.transform.position, Quaternion.Euler((new Vector3(90+transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z))));
                 objectSpawning.GetComponent<CurrentProj>().Starter();

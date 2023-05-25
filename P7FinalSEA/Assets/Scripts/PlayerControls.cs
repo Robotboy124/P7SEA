@@ -33,14 +33,6 @@ public class PlayerControls : MonoBehaviour
     public GameObject burnOutText;
     float dashStamina;
     bool dashing = false;
-<<<<<<< Updated upstream
-    bool dasher = false;
-    bool automatic = false;
-    int burstFire = 0;
-    public int maxAutoBurnOut;
-    int updatingBurnOutCounter;
-    public int burstCount = 0;
-=======
     public bool respawning;
     bool dasher = false;
     bool jumpReady = true;
@@ -50,7 +42,6 @@ public class PlayerControls : MonoBehaviour
     int burstCount;
     int updatingBurnOut;
     float dashChargeMulti = 1;
->>>>>>> Stashed changes
     float globalGravity = -0.9f;
     public float gravityScale = 1.0f;
     public float jumpForce = 13f;
@@ -58,11 +49,7 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< Updated upstream
-        updatingBurnOutCounter = maxAutoBurnOut;
-=======
         updatingBurnOut = maxAutoBurnOut;
->>>>>>> Stashed changes
         fireRateInitial = reloadTimes[Mathf.FloorToInt(weaponScrollWheel)];
         dashStamina = maxDashStamina;
         fireRate = fireRateInitial;
@@ -137,16 +124,9 @@ public class PlayerControls : MonoBehaviour
 
     void AdvancedMovement()
     {
-<<<<<<< Updated upstream
-        if (Input.GetKey(KeyCode.LeftShift) && !grounded && dashCount != 2)
-        {
-            dasher = true;
-            if (dashStamina > 0 && dasher)
-=======
         if (!respawning)
         {
             if (Input.GetKey(KeyCode.LeftShift) && !grounded && dasher)
->>>>>>> Stashed changes
             {
                 if (dashStamina > 0)
                 {
@@ -186,35 +166,6 @@ public class PlayerControls : MonoBehaviour
             {
                 jumpReady = true;
             }
-<<<<<<< Updated upstream
-        }
-        else
-        {
-            dashing = false;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !grounded)
-        {
-            rb.velocity = Vector3.zero;
-            rb.AddForce(Vector3.down * 80f, ForceMode.Impulse);
-            slamming = true;
-        }
-        if (Input.GetKey(KeyCode.LeftControl) && !grounded)
-        {
-            rb.AddForce(Vector3.down*80f*Time.deltaTime, ForceMode.Impulse);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !grounded)
-        {
-            dashCount++;
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && !grounded && dashCount == 1 && dashing)
-        {
-            rb.AddRelativeForce(Vector3.up*jumpForce, ForceMode.Impulse);
-            dashCount++;
-            grounded = false;
-            dashing = false;
-            dasher = false;
-=======
->>>>>>> Stashed changes
         }
     }
 
@@ -228,65 +179,15 @@ public class PlayerControls : MonoBehaviour
     {
         if (!respawning)
         {
-<<<<<<< Updated upstream
-            weaponScrollWheel = projTrails.Length;
-        }
-        actualScroll = Mathf.FloorToInt(Mathf.Abs(weaponScrollWheel) % projTrails.Length);
-        if (Input.mouseScrollDelta.y != 0)
-        {
-            UpdateReload(actualScroll);
-        }
-        GameObject.Find("Reload Timer").GetComponent<ReloadTimer>().SetValue(fireRateInitial, fireRate);
-        var inputFinder = Input.GetMouseButtonDown(0);
-        var randomRange = UnityEngine.Random.Range(0f, 0f);
-        if (projTrails[actualScroll].GetComponent<DamageField>().automatic)
-        {
-            inputFinder = Input.GetMouseButton(0);
-            randomRange = UnityEngine.Random.Range(-0.035f, 0.035f);
-            automatic = true;
-        }
-        else if (!projTrails[actualScroll].GetComponent<DamageField>().automatic)
-        {
-            inputFinder = Input.GetMouseButtonDown(0);
-            randomRange = UnityEngine.Random.Range(0f, 0f);
-            automatic = false;
-            burstFire = 0;
-        }
-        if (Input.GetMouseButtonUp(0) && automatic && burstFire < updatingBurnOutCounter)
-        {
-            updatingBurnOutCounter = burstFire;
-            burstFire = 0;
-            burstCount++;
-        }
-        if (!automatic || burstFire < updatingBurnOutCounter)
-        {
-            burnOutText.SetActive(false);
-        }
-        if (!automatic)
-        {
-            updatingBurnOutCounter = maxAutoBurnOut;
-            burstCount = 0;
-        }
-        if (inputFinder && fireRate <= 0)
-        {
-            if (automatic && (burstFire == updatingBurnOutCounter||burstCount == 3))
-=======
             fireRate -= Time.deltaTime;
             weaponScrollWheel += Input.mouseScrollDelta.y;
                 if (weaponScrollWheel < 0)
->>>>>>> Stashed changes
             {
                 weaponScrollWheel = projTrails.Length;
             }
             actualScroll = Mathf.FloorToInt(Mathf.Abs(weaponScrollWheel) % projTrails.Length);
             if (Input.mouseScrollDelta.y != 0)
             {
-<<<<<<< Updated upstream
-                Vector3 startRaycast = transform.position;
-                RaycastHit hit;
-                LayerMask mask = 1<<LayerMask.GetMask("TrailTrigger");
-                if (Physics.Raycast(GameObject.Find("PlayerCam").transform.position, transform.TransformDirection(Vector3.forward + new Vector3 (randomRange * (UnityEngine.Random.Range(-1.0f, 1.0f)), Mathf.Tan(-GameObject.Find("PlayerCam").transform.localEulerAngles.x/180*Mathf.PI) + randomRange * (UnityEngine.Random.Range(-1.0f, 1.0f)))), out hit, Mathf.Infinity, mask))
-=======
                 UpdateReload(actualScroll);
             }
             GameObject.Find("Reload Timer").GetComponent<ReloadTimer>().SetValue(fireRateInitial, fireRate);
@@ -323,7 +224,6 @@ public class PlayerControls : MonoBehaviour
             if (inputFinder && fireRate <= 0 && !dashing)
             {
                 if (automatic && (burstFire == updatingBurnOut || burstCount >= 3))
->>>>>>> Stashed changes
                 {
                     burnOutText.SetActive(true);
                 }
@@ -392,12 +292,8 @@ public class PlayerControls : MonoBehaviour
     {
         GetComponent<Damageable>().health = 100;
         transform.position = checkpoint.position;
-<<<<<<< Updated upstream
-        GetComponent<Damageable>().damageTaken = 0;
-=======
         rb.velocity = Vector3.zero;
         respawning = true;
->>>>>>> Stashed changes
     }
 
     void OnCollisionEnter(Collision collision)
