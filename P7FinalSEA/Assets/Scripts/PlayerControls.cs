@@ -13,7 +13,6 @@ public class PlayerControls : MonoBehaviour
     public float fireRateInitial = 0.49f;
     public float fireRate;
     public Transform checkpoint;
-    public float minimumY;
     public bool grounded = true;
     public bool slamming = false;
     public GameObject[] projHit;
@@ -294,6 +293,7 @@ public class PlayerControls : MonoBehaviour
         transform.position = checkpoint.position;
         rb.velocity = Vector3.zero;
         respawning = true;
+        GetComponent<Damageable>().damageTaken = 0;
     }
 
     void OnCollisionEnter(Collision collision)
