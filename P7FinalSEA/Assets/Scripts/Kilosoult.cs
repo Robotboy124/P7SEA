@@ -296,7 +296,7 @@ public class Kilosoult : MonoBehaviour
             xLightningTimer += 1;
             transform.position = randomTeleport;
             Destroy(teleportLocation);
-            if (xLightningTimer >= 2)
+            if (xLightningTimer >= 4)
             {
                 Instantiate(lightningX, new Vector3 (Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
                 xLightningTimer = 0;

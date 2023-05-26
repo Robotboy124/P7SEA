@@ -6,6 +6,7 @@ public class ParryBlock : MonoBehaviour
 {
 
     Rigidbody rb;
+    public GameObject explosion;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +29,13 @@ public class ParryBlock : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Explode(float damage, float radius)
+    {
+        GameObject objectSpawning = Instantiate(explosion, transform.position, Quaternion.identity);
+        objectSpawning.GetComponent<DamageField>().damage = damage;
+        objectSpawning.GetComponent<SphereCollider>().radius = radius;
+        Destroy(gameObject);
     }
 }

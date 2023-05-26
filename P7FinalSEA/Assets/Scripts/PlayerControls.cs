@@ -20,13 +20,8 @@ public class PlayerControls : MonoBehaviour
     public float[] reloadTimes;
     float weaponScrollWheel = 1;
     int actualScroll;
-    public float parryTimer = 0f;
-    float parryCooldown = 0f;
-    float parryEffects = 2f;
     public float dashCount = 0f;
     public float maxDashStamina;
-    public GameObject parryTrail;
-    public GameObject parryEffect;
     public GameObject slamEffect;
     public GameObject tutorialText;
     public GameObject burnOutText;
@@ -45,9 +40,14 @@ public class PlayerControls : MonoBehaviour
     public float gravityScale = 1.0f;
     public float jumpForce = 13f;
     Rigidbody rb;
+    public GameObject parryBlock;
+    float parryRegen = 2.5f;
+    public float maxParry = 3;
+    public float currentParry;
     // Start is called before the first frame update
     void Start()
     {
+        currentParry = maxParry;
         updatingBurnOut = maxAutoBurnOut;
         fireRateInitial = reloadTimes[Mathf.FloorToInt(weaponScrollWheel)];
         dashStamina = maxDashStamina;
@@ -75,7 +75,7 @@ public class PlayerControls : MonoBehaviour
         BasicMovement();
         Shooting();
         AdvancedMovement();
-        //Parrying();//
+        Parrying();
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         rb.AddForce(gravity, ForceMode.Acceleration);
         if (transform.position.y < minimumY)
@@ -92,7 +92,7 @@ public class PlayerControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            tutorialText.GetComponent<TMP_Text>().text = "Your starting weapon is a basic semi-auto. Another is an (unnecessarily complicated) automatic. The last one scales with your damage taken.";
+            tutorialText.GetComponent<TMP_Text>().text = "Your starting weapon is a basic semi-auto. The other is an (unnecessarily complicated) automatic.";
         }
         if (grounded)
         {
@@ -237,6 +237,10 @@ public class PlayerControls : MonoBehaviour
                         Instantiate(projHit[actualScroll], hit.point, Quaternion.identity);
                         projTrails[actualScroll].GetComponent<ProjectileTrail>().SetPosition(hit.point, startRaycast);
                         Damageable damaging = hit.collider.gameObject.GetComponent<Damageable>();
+                        if (hit.collider.gameObject == GameObject.FindWithTag("Parry") && (projTrails[actualScroll].GetComponent<DamageField>().eleCannon = false))
+                        {
+                            hit.collider.gameObject.GetComponent<ParryBlock>().Explode(projTrails[actualScroll].GetComponent<DamageField>().damage * 3f, projTrails[actualScroll].GetComponent<DamageField>().damage * 0.5f);
+                        }
                         if (automatic)
                         {
                             burstFire++;
@@ -268,22 +272,26 @@ public class PlayerControls : MonoBehaviour
 
     void Parrying()
     {
-        parryEffects -= Time.deltaTime;
-        parryTimer -= Time.deltaTime;
-        parryCooldown -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.E) && parryCooldown <= 0)
+        if (currentParry != maxParry)
         {
-            parryTimer = 0.15f;
-            parryCooldown = 2f;
-            parryEffects = 2f;
+            parryRegen -= Time.deltaTime;
+        }    
+        if (parryRegen <= 0)
+        {
+            currentParry++;
+            parryRegen = 2.5f;
         }
-        if (parryEffects > 0f)
+        if (currentParry > maxParry)
         {
-            parryEffect.SetActive(true);
+            currentParry = maxParry;
         }
-        else
+        if (Input.GetKeyDown(KeyCode.Q) && currentParry > 0)
         {
-            parryEffect.SetActive(false);
+            GameObject objectSpawned = Instantiate(parryBlock, GameObject.Find("Parry Aim").transform.position, Quaternion.identity);
+            Rigidbody parryRb = objectSpawned.GetComponent<Rigidbody>();
+            parryRb.AddTorque(Vector3.right*10f);
+            parryRb.AddRelativeForce((GameObject.Find("Parry Aim").transform.position - transform.position) * 15f, ForceMode.Impulse);
+            currentParry--;
         }
     }
 
@@ -298,21 +306,6 @@ public class PlayerControls : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<DamageField>() != null && parryTimer > 0)
-        {
-            float damageParried = collision.gameObject.GetComponent<DamageField>().damage;
-            GameObject enthralled = GameObject.FindWithTag("Spark");
-            if (enthralled != null)
-            {
-                enthralled = GameObject.Find("Kilosoult");
-                enthralled.GetComponent<Damageable>().Damaged(damageParried);
-                parryTrail.GetComponent<ProjectileTrail>().SetPosition(transform.position, enthralled.transform.position);
-            }
-            else
-            {
-                enthralled.GetComponent<Damageable>().Damaged(damageParried);
-                parryTrail.GetComponent<ProjectileTrail>().SetPosition(transform.position, enthralled.transform.position);
-            }
-        }
+
     }
 }

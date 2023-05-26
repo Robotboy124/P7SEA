@@ -10,11 +10,12 @@ TagManager:
   - Wood
   - ElecEnemy
   - Ground
+  - Parry
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Wood
+  - 
   - Water
   - UI
   - Player
@@ -23,7 +24,7 @@ TagManager:
   - 
   - TrailTrigger
   - 
-  - 
+  - Wood
   - 
   - 
   - 
