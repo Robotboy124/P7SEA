@@ -71,7 +71,7 @@ public class Kilosoult : MonoBehaviour
         }
         else
         {
-            if (damagin.health <= damagin.initialHealth *0.15f && soulTimer == 0)
+            if (damagin.health <= damagin.initialHealth *0.15f && soulTimer < 1)
             {
                 StartCoroutine(FranticCoroutine());
             }
