@@ -367,6 +367,8 @@ GameObject:
   - component: {fileID: 17173308}
   - component: {fileID: 17173307}
   - component: {fileID: 17173306}
+  - component: {fileID: 17173310}
+  - component: {fileID: 17173309}
   m_Layer: 10
   m_Name: Parry Trail
   m_TagString: Untagged
@@ -425,7 +427,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.40252036
+        value: 0.25786704
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -503,6 +505,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &17173309
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17173305}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &17173310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17173305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256df7860419a7b4e9ecebd0ef7d2f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  eleCannon: 0
+  playerProj: 0
+  automatic: 0
 --- !u!1001 &18798441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3161,6 +3192,7 @@ GameObject:
   - component: {fileID: 327373951}
   - component: {fileID: 327373950}
   - component: {fileID: 327373954}
+  - component: {fileID: 327373955}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -3190,12 +3222,15 @@ MonoBehaviour:
   projHit:
   - {fileID: 6633897692537565162, guid: 5316a8bf93aeaee49acec4fb9a62ef05, type: 3}
   - {fileID: 6633897692537565162, guid: 5316a8bf93aeaee49acec4fb9a62ef05, type: 3}
+  - {fileID: 4167555061807047925, guid: 64c9e08e5372d7b4c9e688fa3e138790, type: 3}
   projTrails:
   - {fileID: 1374407948}
   - {fileID: 40721474}
+  - {fileID: 1238155263}
   reloadTimes:
   - 0.06666667
   - 0.49
+  - 3
   dashCount: 0
   maxDashStamina: 2
   slamEffect: {fileID: 4167555061807047925, guid: 3948fcbc2eb3b584792fed513cd9e001, type: 3}
@@ -3272,6 +3307,19 @@ MonoBehaviour:
   player: 1
   damageTaken: 0
   healDistance: 0
+--- !u!65 &327373955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327373949}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1001 &328598407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4001,7 +4049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5540400170569972250, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
       propertyPath: m_Center.x
-      value: 10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 8985975795509384132, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
       propertyPath: m_Name
@@ -4011,13 +4059,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384132, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_TagString
+      value: Spawner
+      objectReference: {fileID: 0}
     - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 587.5
+      value: 605
       objectReference: {fileID: 0}
     - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5746,7 +5798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1665401072611050922, guid: 1d30cd90cf362424e91792d302671203, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 460
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 1665401072611050922, guid: 1d30cd90cf362424e91792d302671203, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9627,6 +9679,7 @@ MonoBehaviour:
   - {fileID: 796185372}
   - {fileID: 298608955}
   spawnParticle: {fileID: 3355588974269203477, guid: 687d10fa97cfe5647b06076a83b4a6df, type: 3}
+  spawnCheck: 0
 --- !u!114 &1070100847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10674,7 +10727,7 @@ GameObject:
   - component: {fileID: 1238155270}
   m_Layer: 10
   m_Name: Elecannon Trail
-  m_TagString: Untagged
+  m_TagString: ElecAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48409,15 +48462,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7224542539528306871, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7224542539528306871, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7224542539528306871, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7224542539528306871, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: m_LocalPosition.x

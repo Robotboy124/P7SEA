@@ -37,10 +37,20 @@ public class FollowPlayer : MonoBehaviour
     public void SparkExplode()
     {
         GameObject yeet = Instantiate(explodeParticle, transform.position, Quaternion.identity);
-        if (GameObject.Find("Kilosoult").GetComponent<Kilosoult>().soulTimer > 0)
+        if (GameObject.Find("Kilosoult") == null)
+        {
+            yeet.GetComponent<DamageField>().playerProj = true;
+            gameObject.SetActive(false);
+            return;
+        }
+        else if (GameObject.Find("Kilosoult").GetComponent<Kilosoult>().soulTimer > 0)
         {
             yeet.GetComponent<DamageField>().playerProj = true;
         }
-        Destroy(gameObject);
+        else if (GameObject.Find("Kilosoult").GetComponent<Kilosoult>().soulTimer <= 0)
+        {
+            Debug.Log("Ignore This");
+        }
+        gameObject.SetActive(false);
     }
 }

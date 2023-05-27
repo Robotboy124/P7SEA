@@ -8,6 +8,7 @@ public class SpawnAfterWave : MonoBehaviour
     float waveNumber;
     public GameObject[] nextWave;
     public GameObject spawnParticle;
+    public float spawnCheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +34,14 @@ public class SpawnAfterWave : MonoBehaviour
         {
             waveNumber = 0;
         }
-        else if (waveNumber == waveCheck.Length)
+        else if (waveNumber == waveCheck.Length && spawnCheck == 0)
         {
             for (int i = 0; i < nextWave.Length; i++)
             {
                 nextWave[i].SetActive(true);
                 Instantiate(spawnParticle, nextWave[i].transform.position, Quaternion.identity);
             }
+            spawnCheck++;
         }
     }
 }

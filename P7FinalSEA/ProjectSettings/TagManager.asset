@@ -11,6 +11,9 @@ TagManager:
   - ElecEnemy
   - Ground
   - Parry
+  - Spawner
+  - Current
+  - Circuit
   layers:
   - Default
   - TransparentFX

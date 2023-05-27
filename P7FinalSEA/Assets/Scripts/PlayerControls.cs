@@ -27,7 +27,7 @@ public class PlayerControls : MonoBehaviour
     public GameObject burnOutText;
     float dashStamina;
     bool dashing = false;
-    public bool respawning;
+    public bool respawning = true;
     bool dasher = false;
     bool jumpReady = true;
     bool automatic = false;
@@ -180,7 +180,7 @@ public class PlayerControls : MonoBehaviour
         {
             fireRate -= Time.deltaTime;
             weaponScrollWheel += Input.mouseScrollDelta.y;
-                if (weaponScrollWheel < 0)
+            if (weaponScrollWheel < 0)
             {
                 weaponScrollWheel = projTrails.Length;
             }
@@ -237,7 +237,7 @@ public class PlayerControls : MonoBehaviour
                         Instantiate(projHit[actualScroll], hit.point, Quaternion.identity);
                         projTrails[actualScroll].GetComponent<ProjectileTrail>().SetPosition(hit.point, startRaycast);
                         Damageable damaging = hit.collider.gameObject.GetComponent<Damageable>();
-                        if (hit.collider.gameObject == GameObject.FindWithTag("Parry") && (projTrails[actualScroll].GetComponent<DamageField>().eleCannon = false))
+                        if (hit.collider.gameObject == GameObject.FindWithTag("Parry") && (!projTrails[actualScroll].GetComponent<DamageField>().eleCannon && projTrails[actualScroll].GetComponent<DamageField>().playerProj))
                         {
                             hit.collider.gameObject.GetComponent<ParryBlock>().Explode(projTrails[actualScroll].GetComponent<DamageField>().damage * 3f, projTrails[actualScroll].GetComponent<DamageField>().damage * 0.5f);
                         }
@@ -287,10 +287,10 @@ public class PlayerControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q) && currentParry > 0 && !dashing)
         {
-            GameObject objectSpawned = Instantiate(parryBlock, GameObject.Find("Parry Aim").transform.position, Quaternion.identity);
+            GameObject objectSpawned = Instantiate(parryBlock, GameObject.Find("Parry Aim").transform.position - Vector3.up*0.5f, Quaternion.identity);
             Rigidbody parryRb = objectSpawned.GetComponent<Rigidbody>();
             parryRb.AddTorque(Vector3.right*45f);
-            parryRb.AddRelativeForce((GameObject.Find("Parry Aim").transform.position - transform.position) * 12.5f, ForceMode.Impulse);
+            parryRb.AddRelativeForce(((GameObject.Find("Parry Aim").transform.position - transform.position)*0.75f + Vector3.up*0.5f) * 10f, ForceMode.Impulse);
             currentParry--;
         }
     }

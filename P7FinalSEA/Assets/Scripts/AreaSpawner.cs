@@ -6,7 +6,7 @@ public class AreaSpawner : MonoBehaviour
 {
     public GameObject[] enemiesToSpawn;
     public GameObject spawnParticle;
-    float spawnCheck;
+    public float spawnCheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +32,7 @@ public class AreaSpawner : MonoBehaviour
             {
                 GetComponent<Blocker>().WallSummon();
             }
+            spawnCheck++;
         }
     }
 }
