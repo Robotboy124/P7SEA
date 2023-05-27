@@ -42,7 +42,7 @@ public class Damageable : MonoBehaviour
             {
                 GameObject.Find("Player").GetComponent<Damageable>().Damaged(-initialHealth);
             }
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else if (health <= 0 && player)
         {

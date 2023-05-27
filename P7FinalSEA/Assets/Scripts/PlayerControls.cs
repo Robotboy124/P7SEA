@@ -285,12 +285,12 @@ public class PlayerControls : MonoBehaviour
         {
             currentParry = maxParry;
         }
-        if (Input.GetKeyDown(KeyCode.Q) && currentParry > 0)
+        if (Input.GetKeyDown(KeyCode.Q) && currentParry > 0 && !dashing)
         {
             GameObject objectSpawned = Instantiate(parryBlock, GameObject.Find("Parry Aim").transform.position, Quaternion.identity);
             Rigidbody parryRb = objectSpawned.GetComponent<Rigidbody>();
-            parryRb.AddTorque(Vector3.right*10f);
-            parryRb.AddRelativeForce((GameObject.Find("Parry Aim").transform.position - transform.position) * 15f, ForceMode.Impulse);
+            parryRb.AddTorque(Vector3.right*45f);
+            parryRb.AddRelativeForce((GameObject.Find("Parry Aim").transform.position - transform.position) * 12.5f, ForceMode.Impulse);
             currentParry--;
         }
     }
@@ -304,8 +304,11 @@ public class PlayerControls : MonoBehaviour
         GetComponent<Damageable>().damageTaken = 0;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
-
+        if (collision.gameObject.GetComponent<Ground>() != null)
+        {
+            grounded = true;
+        }
     }
 }
