@@ -10,22 +10,26 @@ public class ParryBlock : MonoBehaviour
     GameObject parryTrail;
     Vector3 targetParry;
     Vector3 targetUpdate;
+    GameObject[] grant;
+    GameObject[] sparks;
+    GameObject[] currents;
+    GameObject[] circuits;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        parryTrail = GameObject.Find("Parry Trail");
     }
 
     // Update is called once per frame
     void Update()
     {
-        parryTrail = GameObject.Find("Parry Trail");
         targetParry = targetUpdate;
+        grant = GameObject.FindGameObjectsWithTag("Wood");
+        sparks = GameObject.FindGameObjectsWithTag("Spark");
+        currents = GameObject.FindGameObjectsWithTag("Current");
+        circuits = GameObject.FindGameObjectsWithTag("Circuit");
         RaycastHit ho;
-        GameObject[] grant = GameObject.FindGameObjectsWithTag("Wood");
-        GameObject[] sparks = GameObject.FindGameObjectsWithTag("Spark");
-        GameObject[] currents = GameObject.FindGameObjectsWithTag("Current");
-        GameObject[] circuits = GameObject.FindGameObjectsWithTag("Circuit");
         for (int f = 0; f < grant.Length; f++)
         {
             if (Physics.Raycast(transform.position, (grant[f].transform.position - transform.position), out ho, Mathf.Infinity))
@@ -101,7 +105,10 @@ public class ParryBlock : MonoBehaviour
         else if (other.gameObject.CompareTag("ElecAttack"))
         {
             float damaage = other.gameObject.GetComponent<DamageField>().damage;
-            parryTrail.GetComponent<ProjectileTrail>().SetPosition(targetParry, transform.position);
+            if (other.gameObject.GetComponent<DamageField>().playerProj == false)
+            {
+                parryTrail.GetComponent<ProjectileTrail>().SetPosition(other.gameObject.GetComponent<InstantiatedAttack>().objectSpawnedThis.transform.position + (Time.deltaTime*other.gameObject.GetComponent<InstantiatedAttack>().objectSpawnedThis.GetComponent<Rigidbody>().velocity), transform.position);
+            }
             parryTrail.GetComponent<DamageField>().damage = other.gameObject.GetComponent<DamageField>().damage*1.5f;
             if (other.gameObject.GetComponent<ProjectileTrail>() == null)
             {

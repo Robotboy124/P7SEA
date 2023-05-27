@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5051975380099491156}
   - component: {fileID: 8293731929973014150}
   - component: {fileID: 8048488181751790154}
+  - component: {fileID: -5191626267592110164}
   m_Layer: 0
   m_Name: Ground Lightning
   m_TagString: Untagged
@@ -4890,3 +4891,15 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &-5191626267592110164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506176506040683606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39bcd8afda8fbd342bcb4119ec43e7cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

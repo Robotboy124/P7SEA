@@ -43,7 +43,8 @@ public class Circuit : MonoBehaviour
                 {
                     GameObject trail = Instantiate(zapTrail, transform.position, Quaternion.identity);
                     trail.GetComponent<ProjectileTrail>().SetPosition(new Vector3(hit.point.x, transform.position.y-1.5f, hit.point.z), zapPoint.position);
-                    Instantiate(groundLightning, new Vector3 (hit.point.x, transform.position.y - 1, hit.point.z), Quaternion.identity);
+                    GameObject lightning = Instantiate(groundLightning, new Vector3 (hit.point.x, transform.position.y - 1, hit.point.z), Quaternion.identity);
+                    lightning.GetComponent<InstantiatedAttack>().ObjectUpdate(gameObject);
                     StopRaycast();
                 }
                 else 

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8086219598988919313}
   - component: {fileID: 1246613857142984371}
   - component: {fileID: -7990332801796419927}
+  - component: {fileID: -5625277248240974}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: ElecAttack
@@ -192,3 +193,15 @@ MonoBehaviour:
   eleCannon: 0
   playerProj: 0
   automatic: 0
+--- !u!114 &-5625277248240974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6639003541882490693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39bcd8afda8fbd342bcb4119ec43e7cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

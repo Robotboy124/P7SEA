@@ -23,7 +23,8 @@ public class LightningSummon : MonoBehaviour
     {
         yield return new WaitForSeconds(lightningTimer);
 
-        Instantiate(lightning, transform.position, Quaternion.identity);
+        GameObject lights = Instantiate(lightning, transform.position, Quaternion.identity);
+        lights.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
         Destroy(gameObject);
     }
 }

@@ -69,6 +69,7 @@ public class Current : MonoBehaviour
             {
                 GameObject objectSpawning = Instantiate(projectile, zapPoint.transform.position, Quaternion.Euler((new Vector3(90+transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z))));
                 objectSpawning.GetComponent<CurrentProj>().Starter();
+                objectSpawning.GetComponent<InstantiatedAttack>().ObjectUpdate(gameObject);
                 StartCoroutine(Stopper());
             }
         }
