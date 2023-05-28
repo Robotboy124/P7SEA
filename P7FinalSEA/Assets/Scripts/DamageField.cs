@@ -9,6 +9,8 @@ public class DamageField : MonoBehaviour
     public bool eleCannon;
     public bool playerProj;
     public bool automatic;
+    public bool parryTrail;
+    public GameObject parryExplosion;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,11 @@ public class DamageField : MonoBehaviour
         else if (playerProj && collision.gameObject != GameObject.Find("Player") && collision.gameObject.GetComponent<Damageable>() != null)
         {
             collision.gameObject.GetComponent<Damageable>().Damaged(damage);
+        }
+
+        if (parryTrail && collision.gameObject.GetComponent<Damageable>() != null)
+        {
+            Instantiate(parryExplosion, transform.position, Quaternion.identity);
         }
     }
 }

@@ -16,6 +16,7 @@ public class Current : MonoBehaviour
     GameObject player;
     Rigidbody rb;
     bool raycast = false;
+    bool moving = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,14 +44,19 @@ public class Current : MonoBehaviour
         {
             movement = Vector3.right;
         }
-        transform.LookAt (player.transform.position);
-        transform.Translate(movement*10f*Time.deltaTime);
+        if (moving)
+        {
+            transform.LookAt (player.transform.position);
+            transform.Translate(movement*10f*Time.deltaTime);
+        }
         CircuitShoot();
     }
 
     IEnumerator CurrentAttack()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.75f);
+        moving = false;
+        yield return new WaitForSeconds(0.75f);
         raycast = true;
     }
 
@@ -58,6 +64,7 @@ public class Current : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         StopRaycast();
+        moving = true;
     }
 
     void CircuitShoot()

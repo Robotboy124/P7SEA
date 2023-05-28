@@ -122,7 +122,8 @@ public class Kilosoult : MonoBehaviour
 
         for(int i = 0; i<(1*phaseMulti); i++)
         {
-            Instantiate(lightningX, new Vector3(Random.Range(-18f, 18f), 0.5f, Random.Range(-18f, 18f)), Quaternion.identity);
+            GameObject instantiating = Instantiate(lightningX, new Vector3(Random.Range(-18f, 18f), 0.5f, Random.Range(-18f, 18f)), Quaternion.identity);
+            instantiating.GetComponent<InstantiatedAttack>().objectSpawnedThis = gameObject;
         }
 
         if (souled == true)
@@ -193,7 +194,7 @@ public class Kilosoult : MonoBehaviour
         targets = new Vector3[6];
         if (phaseMulti == 1)
         {
-            int u = Random.Range(1, targets.Length - 3);
+            int u = Random.Range(1, targets.Length - 2);
             targets[0] = new Vector3(Random.Range(-19f, 19f), Random.Range(1f, roof.position.y-1), Random.Range(-19f, 19f));
             targets[1] = new Vector3(Random.Range(-19f, 19f), Random.Range(1f, roof.position.y-1), Random.Range(-19f, 19f));           
             targets[2] = new Vector3(Random.Range(-19f, 19f), Random.Range(1f, roof.position.y-1), Random.Range(-19f, 19f));
@@ -208,7 +209,7 @@ public class Kilosoult : MonoBehaviour
         }
         else if (phaseMulti == 2)
         {
-            int u = Random.Range(1, targets.Length);
+            int u = Random.Range(1, targets.Length + 1);
             targets[0] = new Vector3(Random.Range(-19f, 19f), Random.Range(1f, roof.position.y-1), Random.Range(-19f, 19f));
             targets[1] = new Vector3(Random.Range(-19f, 19f), Random.Range(1f, roof.position.y-1), Random.Range(-19f, 19f)); 
             targets[2] = new Vector3(Random.Range(-19f, 19f), Random.Range(1f, roof.position.y-1), Random.Range(-19f, 19f)); 

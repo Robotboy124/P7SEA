@@ -47,10 +47,6 @@ public class FollowPlayer : MonoBehaviour
         {
             yeet.GetComponent<DamageField>().playerProj = true;
         }
-        else if (GameObject.Find("Kilosoult").GetComponent<Kilosoult>().soulTimer <= 0)
-        {
-            Debug.Log("Ignore This");
-        }
         gameObject.SetActive(false);
     }
 }

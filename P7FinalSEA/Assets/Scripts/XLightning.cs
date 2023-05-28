@@ -26,21 +26,26 @@ public class XLightning : MonoBehaviour
 
     IEnumerator XLightningSummon()
     {
-        Instantiate(groundLightning, transform.position, Quaternion.identity);
+        GameObject lightning = Instantiate(groundLightning, transform.position, Quaternion.identity);
+        lightning.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
 
         yield return new WaitForSeconds(0.75f);
 
-        for (int i = 1; i < 22; i++)
+        for (int i = 1; i < 50; i++)
         {
             transform.Translate(Vector3.right*i*2);
-            Instantiate(groundLightning, transform.position, Quaternion.identity);
+            GameObject lightningOne = Instantiate(groundLightning, transform.position, Quaternion.identity);
+            lightningOne.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
             transform.Translate(Vector3.left*i*4);
-            Instantiate(groundLightning, transform.position, Quaternion.identity);
+            GameObject lightningTwo = Instantiate(groundLightning, transform.position, Quaternion.identity);
+            lightningTwo.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
             transform.Translate(Vector3.right*i*2);
             transform.Translate(Vector3.forward*i*2);
-            Instantiate(groundLightning, transform.position, Quaternion.identity);
+            GameObject lightningThree = Instantiate(groundLightning, transform.position, Quaternion.identity);
+            lightningThree.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
             transform.Translate(Vector3.back*i*4);
-            Instantiate(groundLightning, transform.position, Quaternion.identity);
+            GameObject lightningFour = Instantiate(groundLightning, transform.position, Quaternion.identity);
+            lightningFour.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
             transform.Translate(Vector3.forward*i*2);
         }
 

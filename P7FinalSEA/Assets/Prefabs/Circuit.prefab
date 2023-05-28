@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286cf572dfea6584980a48a4306ff6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 40
+  health: 55
   initialHealth: 0
   healths: {fileID: 0}
   deathText: {fileID: 0}
@@ -252,6 +252,8 @@ MonoBehaviour:
   eleCannon: 0
   playerProj: 0
   automatic: 0
+  parryTrail: 0
+  parryExplosion: {fileID: 0}
 --- !u!114 &-6277498120324327868
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -237,7 +237,7 @@ public class PlayerControls : MonoBehaviour
                         Instantiate(projHit[actualScroll], hit.point, Quaternion.identity);
                         projTrails[actualScroll].GetComponent<ProjectileTrail>().SetPosition(hit.point, startRaycast);
                         Damageable damaging = hit.collider.gameObject.GetComponent<Damageable>();
-                        if (hit.collider.gameObject == GameObject.FindWithTag("Parry") && (!projTrails[actualScroll].GetComponent<DamageField>().eleCannon && projTrails[actualScroll].GetComponent<DamageField>().playerProj))
+                        if (hit.collider.gameObject.CompareTag("Parry") && (!projTrails[actualScroll].GetComponent<DamageField>().eleCannon && projTrails[actualScroll].GetComponent<DamageField>().playerProj))
                         {
                             hit.collider.gameObject.GetComponent<ParryBlock>().Explode(projTrails[actualScroll].GetComponent<DamageField>().damage * 3f, projTrails[actualScroll].GetComponent<DamageField>().damage * 0.5f);
                         }
@@ -293,6 +293,7 @@ public class PlayerControls : MonoBehaviour
             parryRb.AddRelativeForce(((GameObject.Find("Parry Aim").transform.position - transform.position)*0.75f + Vector3.up*0.5f) * 10f, ForceMode.Impulse);
             currentParry--;
         }
+        GameObject.Find("Parry Slider").GetComponent<WoodMeter>().UpdateValue(currentParry);
     }
 
     public void Respawn()

@@ -23,10 +23,10 @@ public class ProjectileTrail : MonoBehaviour
     public void SetPosition(Vector3 hitPos, Vector3 startPos)
     {
         startPosition = startPos;
-        StartCoroutine(TrailGenerate(hitPos, startPosition));
+        StartCoroutine(TrailGenerateNoParry(hitPos, startPosition));
     }
 
-    IEnumerator TrailGenerate(Vector3 hit, Vector3 start)
+    IEnumerator TrailGenerateNoParry(Vector3 hit, Vector3 start)
     {
         starter = start;
         finisher = hit; 
