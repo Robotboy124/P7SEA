@@ -301,6 +301,7 @@ public class PlayerControls : MonoBehaviour
         GetComponent<Damageable>().health = 100;
         transform.position = checkpoint.position;
         rb.velocity = Vector3.zero;
+        grounded = false;
         respawning = true;
         GetComponent<Damageable>().damageTaken = 0;
     }

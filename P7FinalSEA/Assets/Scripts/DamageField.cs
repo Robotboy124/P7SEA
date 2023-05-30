@@ -43,5 +43,9 @@ public class DamageField : MonoBehaviour
         {
             Instantiate(parryExplosion, transform.position, Quaternion.identity);
         }
+        if (parryTrail && collision.gameObject == GameObject.FindWithTag("Circuit"))
+        {
+            Debug.Log("Why isn't this working?");
+        }
     }
 }

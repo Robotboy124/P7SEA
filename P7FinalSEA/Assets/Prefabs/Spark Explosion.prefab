@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7517772050190623849}
   - component: {fileID: 1473325705720340284}
   - component: {fileID: -8554763451520016833}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spark Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4916,6 +4916,8 @@ MonoBehaviour:
   eleCannon: 0
   playerProj: 0
   automatic: 0
+  parryTrail: 0
+  parryExplosion: {fileID: 0}
 --- !u!108 &-8554763451520016833
 Light:
   m_ObjectHideFlags: 0

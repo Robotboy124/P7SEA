@@ -105,7 +105,6 @@ public class ParryBlock : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("ElecAttack"))
         {
-            Debug.Log("Something was parried!");
             float damaage = other.gameObject.GetComponent<DamageField>().damage;
             GameObject[] woods = GameObject.FindGameObjectsWithTag("Parry");
             for(int z = 0; z < woods.Length; z++)
@@ -122,8 +121,39 @@ public class ParryBlock : MonoBehaviour
                 }
                 if (woods.Length < 2)
                 {
-                    Debug.Log("Why");
-                    parryTrail.GetComponent<ProjectileTrail>().SetPosition(other.gameObject.GetComponent<InstantiatedAttack>().objectSpawnedThis.transform.position, transform.position);
+                    if (other.gameObject.GetComponent<InstantiatedAttack>() == null)
+                    {
+                        if (sparks.Length > 0)
+                        {
+                            parryTrail.GetComponent<ProjectileTrail>().SetPosition(sparks[0].transform.position, transform.position);
+                            Debug.Log("Aimed for Spark");
+                        }
+                        else if (currents.Length > 0)
+                        {
+                            parryTrail.GetComponent<ProjectileTrail>().SetPosition(currents[0].transform.position, transform.position);
+                            Debug.Log("Aimed for Current");
+                        }
+                        else if (circuits.Length > 0)
+                        {
+                            parryTrail.GetComponent<ProjectileTrail>().SetPosition(circuits[0].transform.position, transform.position);
+                            Debug.Log("Aimed for Circuit");
+                        }
+                        else if (GameObject.Find("Kilosoult") != null)
+                        {
+                            parryTrail.GetComponent<ProjectileTrail>().SetPosition(GameObject.Find("Kilosoult").transform.position, transform.position);
+                        }
+                    }
+                    else
+                    {
+                        if (gameObject.CompareTag("Circuit"))
+                        {
+                            parryTrail.GetComponent<ProjectileTrail>().SetPosition(other.gameObject.GetComponent<InstantiatedAttack>().objectSpawnedThis.transform.position + Vector3.down*0.75f, transform.position);
+                        }
+                        else
+                        {
+                            parryTrail.GetComponent<ProjectileTrail>().SetPosition(other.gameObject.GetComponent<InstantiatedAttack>().objectSpawnedThis.transform.position, transform.position);
+                        }
+                    }
                 }
                 else if (woodChecker >= woods.Length)
                 {
@@ -138,7 +168,7 @@ public class ParryBlock : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
     public void Explode(float damaging, float radia)
     {
         GameObject objectSpawning = Instantiate(explosion, transform.position, Quaternion.identity);
