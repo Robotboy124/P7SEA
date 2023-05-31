@@ -228,14 +228,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286cf572dfea6584980a48a4306ff6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 55
+  health: 45
   initialHealth: 0
   healths: {fileID: 0}
   deathText: {fileID: 0}
   healthBarr: 0
   player: 0
   damageTaken: 0
-  healDistance: 5
+  healDistance: 7
 --- !u!114 &4220199259418535520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43b39c4c277bf641922d84832990e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forcedZRotation: 0
   zapPoint: {fileID: 6092850326864326882}
   zapTrail: {fileID: 5999795720864183286, guid: d58e085badea345429fa7b472938b3ce, type: 3}
   groundLightning: {fileID: 2506176506040683606, guid: ff230bbfa88a9b244b42aaf469855924, type: 3}

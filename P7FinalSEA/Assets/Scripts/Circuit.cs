@@ -6,6 +6,7 @@ public class Circuit : MonoBehaviour
 {
     GameObject player;
     Damageable damaging;
+    public float forcedZRotation;
     public Transform zapPoint;
     public GameObject zapTrail;
     public GameObject groundLightning;
@@ -23,6 +24,7 @@ public class Circuit : MonoBehaviour
     void Update()
     {
         transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, forcedZRotation);
     }
 
     IEnumerator CircuitAttack()
@@ -43,7 +45,7 @@ public class Circuit : MonoBehaviour
                 {
                     GameObject trail = Instantiate(zapTrail, transform.position, Quaternion.identity);
                     trail.GetComponent<ProjectileTrail>().SetPosition(new Vector3(hit.point.x, transform.position.y-1.5f, hit.point.z), zapPoint.position);
-                    GameObject lightning = Instantiate(groundLightning, new Vector3 (hit.point.x, transform.position.y - 1, hit.point.z), Quaternion.identity);
+                    GameObject lightning = Instantiate(groundLightning, new Vector3 (hit.point.x, transform.position.y - 1.5f, hit.point.z), Quaternion.identity);
                     lightning.GetComponent<InstantiatedAttack>().ObjectUpdate(gameObject);
                     StopRaycast();
                 }

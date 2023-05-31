@@ -118,6 +118,8 @@ MonoBehaviour:
   eleCannon: 0
   playerProj: 0
   automatic: 0
+  parryTrail: 0
+  parryExplosion: {fileID: 0}
 --- !u!114 &4710690283583402251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +139,7 @@ MonoBehaviour:
   healthBarr: 0
   player: 0
   damageTaken: 0
-  healDistance: 10
+  healDistance: 9
 --- !u!114 &3660314148376395690
 MonoBehaviour:
   m_ObjectHideFlags: 0

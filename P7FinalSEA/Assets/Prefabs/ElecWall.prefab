@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  forceAim: {fileID: 3436176670971987734}
 --- !u!1 &3436176670971987734
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +218,7 @@ GameObject:
   - component: {fileID: 7079485210642033966}
   - component: {fileID: 8587199580915309565}
   - component: {fileID: 208036393110520016}
+  - component: {fileID: 8045939891823025463}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -5020,3 +5020,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8045939891823025463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8555335388734617924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf951113fb9eaf49955896595dae457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

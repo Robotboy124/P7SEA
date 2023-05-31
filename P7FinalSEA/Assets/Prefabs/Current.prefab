@@ -5192,6 +5192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5727fd6680826f94da1b6373ab04e2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
   projectile: {fileID: 8375243785592076011, guid: a76fce2583191f442abbd8fb3df91237, type: 3}
   zapPoint: {fileID: 3585296196543416200}
   telePoint:
@@ -5214,6 +5215,8 @@ MonoBehaviour:
   eleCannon: 0
   playerProj: 0
   automatic: 0
+  parryTrail: 0
+  parryExplosion: {fileID: 0}
 --- !u!114 &1690493108648559653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5233,7 +5236,7 @@ MonoBehaviour:
   healthBarr: 0
   player: 0
   damageTaken: 0
-  healDistance: 20
+  healDistance: 12
 --- !u!96 &-446751072065881757
 TrailRenderer:
   serializedVersion: 2

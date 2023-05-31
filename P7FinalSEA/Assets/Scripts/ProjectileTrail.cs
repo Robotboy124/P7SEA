@@ -36,7 +36,7 @@ public class ProjectileTrail : MonoBehaviour
         GetComponent<TrailRenderer>().enabled = true;
         yield return new WaitForEndOfFrame();
         transform.position = hit;
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(GetComponent<TrailRenderer>().time);
         GetComponent<TrailRenderer>().enabled = false;
         transform.position = new Vector3(transform.position.x, 10000f, transform.position.z);
     }

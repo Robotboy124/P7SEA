@@ -279,7 +279,7 @@ public class PlayerControls : MonoBehaviour
         if (parryRegen <= 0)
         {
             currentParry++;
-            parryRegen = 2.5f;
+            parryRegen = 5.0f;
         }
         if (currentParry > maxParry)
         {
@@ -287,7 +287,7 @@ public class PlayerControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q) && currentParry > 0 && !dashing)
         {
-            GameObject objectSpawned = Instantiate(parryBlock, GameObject.Find("Parry Aim").transform.position - Vector3.up*0.5f, Quaternion.identity);
+            GameObject objectSpawned = Instantiate(parryBlock, GameObject.Find("Parry Aim").transform.position - Vector3.up*0.45f, Quaternion.identity);
             Rigidbody parryRb = objectSpawned.GetComponent<Rigidbody>();
             parryRb.AddTorque(Vector3.right*45f);
             parryRb.AddRelativeForce(((GameObject.Find("Parry Aim").transform.position - transform.position)*0.75f + Vector3.up*0.5f) * 10f, ForceMode.Impulse);

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Current : MonoBehaviour
 {
+    public float speed;
     public GameObject projectile;
     public GameObject zapPoint;
     public GameObject[] telePoint;
@@ -47,7 +48,7 @@ public class Current : MonoBehaviour
         if (moving)
         {
             transform.LookAt (player.transform.position);
-            transform.Translate(movement*10f*Time.deltaTime);
+            transform.Translate(movement*speed*Time.deltaTime);
         }
         CircuitShoot();
     }
