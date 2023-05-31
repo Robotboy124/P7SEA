@@ -7488,6 +7488,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 284787518}
     m_Modifications:
+    - target: {fileID: 1401739598569551283, guid: 1fa1d2c6c38f26e48bdf077ccd29df32, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a490c6ac9335280499fb5fbd9ab42f62, type: 2}
     - target: {fileID: 2060221310845284470, guid: 1fa1d2c6c38f26e48bdf077ccd29df32, type: 3}
       propertyPath: m_Name
       value: Wall Lightning
@@ -10496,6 +10500,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2105046069}
     m_Modifications:
+    - target: {fileID: 1401739598569551283, guid: 1fa1d2c6c38f26e48bdf077ccd29df32, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a490c6ac9335280499fb5fbd9ab42f62, type: 2}
     - target: {fileID: 2060221310845284470, guid: 1fa1d2c6c38f26e48bdf077ccd29df32, type: 3}
       propertyPath: m_Name
       value: Wall Lightning
@@ -20904,6 +20912,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 101234221}
     m_Modifications:
+    - target: {fileID: 1401739598569551283, guid: 1fa1d2c6c38f26e48bdf077ccd29df32, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a490c6ac9335280499fb5fbd9ab42f62, type: 2}
     - target: {fileID: 2060221310845284470, guid: 1fa1d2c6c38f26e48bdf077ccd29df32, type: 3}
       propertyPath: m_Name
       value: Wall Lightning
@@ -46999,6 +47011,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1716072675}
     m_Modifications:
+    - target: {fileID: 1401739598569551283, guid: 1fa1d2c6c38f26e48bdf077ccd29df32, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a490c6ac9335280499fb5fbd9ab42f62, type: 2}
     - target: {fileID: 2060221310845284470, guid: 1fa1d2c6c38f26e48bdf077ccd29df32, type: 3}
       propertyPath: m_Name
       value: Wall Lightning
@@ -53255,6 +53271,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1725227876}
     m_Modifications:
+    - target: {fileID: 208036393110520016, guid: 1d30cd90cf362424e91792d302671203, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a490c6ac9335280499fb5fbd9ab42f62, type: 2}
     - target: {fileID: 1665401072611050922, guid: 1d30cd90cf362424e91792d302671203, type: 3}
       propertyPath: m_RootOrder
       value: 28
