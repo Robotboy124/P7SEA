@@ -12,6 +12,7 @@ public class Current : MonoBehaviour
     int teleport = 0;
     Vector3 movement;
     public Vector3 transformStart;
+    public float damageMulti;
     Vector3 teleportStart;
     Damageable damaging;
     GameObject player;
@@ -77,6 +78,7 @@ public class Current : MonoBehaviour
             {
                 GameObject objectSpawning = Instantiate(projectile, zapPoint.transform.position, Quaternion.Euler((new Vector3(90+transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z))));
                 objectSpawning.GetComponent<CurrentProj>().Starter();
+                objectSpawning.GetComponent<DamageField>().damage = objectSpawning.GetComponent<DamageField>().damage * damageMulti;
                 objectSpawning.GetComponent<InstantiatedAttack>().ObjectUpdate(gameObject);
                 StartCoroutine(Stopper());
             }

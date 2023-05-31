@@ -5199,6 +5199,7 @@ MonoBehaviour:
   - {fileID: 6951157088370064810}
   - {fileID: 307382940399479228}
   transformStart: {x: 0, y: 0, z: 0}
+  damageMulti: 1
 --- !u!114 &6912571965863649056
 MonoBehaviour:
   m_ObjectHideFlags: 0

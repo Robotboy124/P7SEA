@@ -92,7 +92,7 @@ public class PlayerControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            tutorialText.GetComponent<TMP_Text>().text = "Your starting weapon is a basic semi-auto. The other is an (unnecessarily complicated) automatic.";
+            tutorialText.GetComponent<TMP_Text>().text = "Your starting weapon is a basic semi-auto. Another is an (unnecessarily complicated) automatic that burns out with specific conditions. The final one is an ELECTRIC cannon that scales damage based on how much damage you've taken.";
         }
         if (grounded)
         {

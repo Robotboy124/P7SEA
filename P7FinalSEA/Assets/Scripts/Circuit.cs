@@ -7,6 +7,7 @@ public class Circuit : MonoBehaviour
     GameObject player;
     Damageable damaging;
     public float forcedZRotation;
+    public float damageMulti = 1;
     public Transform zapPoint;
     public GameObject zapTrail;
     public GameObject groundLightning;
@@ -46,6 +47,7 @@ public class Circuit : MonoBehaviour
                     GameObject trail = Instantiate(zapTrail, transform.position, Quaternion.identity);
                     trail.GetComponent<ProjectileTrail>().SetPosition(new Vector3(hit.point.x, transform.position.y-1.5f, hit.point.z), zapPoint.position);
                     GameObject lightning = Instantiate(groundLightning, new Vector3 (hit.point.x, transform.position.y - 1.5f, hit.point.z), Quaternion.identity);
+                    lightning.GetComponent<LightningSummon>().damageMulti = damageMulti;
                     lightning.GetComponent<InstantiatedAttack>().ObjectUpdate(gameObject);
                     StopRaycast();
                 }
