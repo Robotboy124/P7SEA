@@ -76,7 +76,7 @@ public class Kilosoult : MonoBehaviour
         }
         else
         {
-            if (damagin.health <= damagin.initialHealth *0.15f && soulTimer < 1)
+            if (damagin.health <= damagin.initialHealth *0.15f && GameObject.FindWithTag("Spark") == null)
             {
                 StartCoroutine(FranticCoroutine());
             }
@@ -211,46 +211,39 @@ public class Kilosoult : MonoBehaviour
         targets = new Vector3[6];
         if (phaseMulti == 1)
         {
-            int u = Random.Range(1, targets.Length - 2);
             targets[0] = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y-1), Random.Range(-19f, 19f));
             targets[1] = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y-1), Random.Range(-19f, 19f));           
-            targets[2] = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y-1), Random.Range(-19f, 19f));
+            targets[2] = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, GameObject.Find("Player").transform.position.z);
             targets[3] = targets[2];
             targets[4] = targets[2];
             targets[5] = targets[2];
-            targets[u-1] = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, GameObject.Find("Player").transform.position.z);
-            Instantiate(dashTarget, targets[u-1], Quaternion.identity);
-            Instantiate(dashTarget, targets[0], Quaternion.identity);
-            Instantiate(dashTarget, targets[1], Quaternion.identity);
-            Instantiate(dashTarget, targets[2], Quaternion.identity);
         }
         else if (phaseMulti == 2)
         {
-            int u = Random.Range(1, targets.Length + 1);
             targets[0] = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y-1), Random.Range(-19f, 19f));
             targets[1] = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y-1), Random.Range(-19f, 19f)); 
-            targets[2] = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y-1), Random.Range(-19f, 19f)); 
+            targets[2] = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, GameObject.Find("Player").transform.position.z); 
             targets[3] = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y-1), Random.Range(-19f, 19f));
             targets[4] = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y-1), Random.Range(-19f, 19f));
-            targets[5] = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y-1), Random.Range(-19f, 19f));
-            targets[u-1] = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, GameObject.Find("Player").transform.position.z);
-            Instantiate(dashTarget, targets[u-1], Quaternion.identity);
             Instantiate(dashTarget, targets[0], Quaternion.identity); 
             Instantiate(dashTarget, targets[1], Quaternion.identity); 
             Instantiate(dashTarget, targets[2], Quaternion.identity); 
             Instantiate(dashTarget, targets[3], Quaternion.identity); 
-            Instantiate(dashTarget, targets[4], Quaternion.identity); 
-            Instantiate(dashTarget, targets[5], Quaternion.identity); 
+            Instantiate(dashTarget, targets[4], Quaternion.identity);
         }
         dashTrail.SetActive(true);
         if (phaseMulti == 2)
         {
             phaseDash.SetActive(true);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
+        if (phaseMulti == 2)
+        {
+            targets[5] = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, GameObject.Find("Player").transform.position.z);
+        }
         for (int i = 0; i < (3*phaseMulti); i++)
         {
-            yield return new WaitForSeconds(teleportTimer / 3f);
+            yield return new WaitForSeconds(teleportTimer / 4f);
             transform.position = targets[i];
             RaycastHit hit;
             if (i == 0)
@@ -259,7 +252,7 @@ public class Kilosoult : MonoBehaviour
                 {
                     if (hit.collider.gameObject == GameObject.Find("Player"))
                     {
-                        hit.collider.gameObject.GetComponent<Damageable>().Damaged(40);
+                        hit.collider.gameObject.GetComponent<Damageable>().Damaged(50);
                     }
                 }
             }
@@ -269,7 +262,7 @@ public class Kilosoult : MonoBehaviour
                 {
                     if (hit.collider.gameObject == GameObject.Find("Player"))
                     {
-                        hit.collider.gameObject.GetComponent<Damageable>().Damaged(40);
+                        hit.collider.gameObject.GetComponent<Damageable>().Damaged(50);
                     }                    
                 }   
             }
@@ -280,14 +273,9 @@ public class Kilosoult : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
         GameObject[] dashers = GameObject.FindGameObjectsWithTag("DashTarget");
-        Destroy(dashers[0]);
-        Destroy(dashers[1]);
-        Destroy(dashers[2]);
-        if (phaseMulti == 2 && phaseCheck == 2)
+        for (int i = 0; i < dashers.Length; i++)
         {
-            Destroy(dashers[3]);
-            Destroy(dashers[4]);
-            Destroy(dashers[5]);
+            Destroy(dashers[i]);
         }
         StartCoroutine(AttackCoroutine());
         teleporting = true;
