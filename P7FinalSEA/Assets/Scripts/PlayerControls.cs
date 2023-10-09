@@ -279,7 +279,7 @@ public class PlayerControls : MonoBehaviour
         if (parryRegen <= 0)
         {
             currentParry++;
-            parryRegen = 5.0f;
+            parryRegen = 3.0f;
         }
         if (currentParry > maxParry)
         {

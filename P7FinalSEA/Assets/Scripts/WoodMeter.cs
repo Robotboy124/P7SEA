@@ -10,7 +10,7 @@ public class WoodMeter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sliding.maxValue = 3;
+        sliding.maxValue = 4;
         sliding.value = sliding.maxValue;
         sliding.fillRect.gameObject.SetActive(false);   
     }

@@ -4565,7 +4565,7 @@ MonoBehaviour:
   gravityScale: 3.5
   jumpForce: 12.5
   parryBlock: {fileID: 2174231092939647118, guid: 0679c67b414b6b3419a8d13b6af94fd0, type: 3}
-  maxParry: 3
+  maxParry: 4
   currentParry: 0
 --- !u!65 &327373951
 BoxCollider:
