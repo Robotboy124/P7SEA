@@ -76,11 +76,11 @@ public class Kilosoult : MonoBehaviour
         }
         else
         {
-            if (damagin.health <= damagin.initialHealth *0.15f && GameObject.FindWithTag("Spark") == null)
+            if (damagin.health <= damagin.initialHealth *0.1f && GameObject.FindWithTag("Spark") == null)
             {
                 StartCoroutine(FranticCoroutine());
             }
-            else if (damagin.health > damagin.initialHealth * 0.15f)
+            else if (damagin.health > damagin.initialHealth * 0.1f)
             {
                 var randomCoroutine = Random.Range(0, 10);
                 if (randomCoroutine <= 4)
