@@ -13,6 +13,7 @@ public class Kilosoult : MonoBehaviour
     public GameObject rotatingLightning;
     public GameObject phaseTwoLightning;
     public GameObject groundLightning;
+    public GameObject slamIndicate;
     public GameObject bossModel;
     Animator bossAnim;
     public Transform playerCam;
@@ -48,7 +49,7 @@ public class Kilosoult : MonoBehaviour
 
         if (flyUp)
         {
-            transform.Translate(Vector3.up * 16 * Time.deltaTime);
+            transform.Translate(Vector3.up * 36 * Time.deltaTime);
         }
     }
 
@@ -217,12 +218,13 @@ public class Kilosoult : MonoBehaviour
         lighting.range = 24f;
         lighting.intensity = 8f;
         yield return new WaitForSeconds(0.5f);
+        Instantiate(slamIndicate, transform.position, Quaternion.identity);
         transform.Translate(Vector3.up * 100f);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.75f);
         Vector3 summonPos = GameObject.Find("Player").transform.position - Vector3.up * GameObject.Find("Player").transform.position.y;
         transform.position = new Vector3(GameObject.Find("Player").transform.position.x, -2.0f, GameObject.Find("Player").transform.position.z);
         flyUp = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds((1f)/(4f));
         flyUp = false;
         Instantiate(groundLightning, summonPos, Quaternion.identity);
         lighting.range = 12f;

@@ -54733,6 +54733,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 963194228}
     - target: {fileID: 7224542539528306867, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
+      propertyPath: slamIndicate
+      value: 
+      objectReference: {fileID: 2506176506040683606, guid: c3b3fd245a8165e429fb19ba288e4f5f, type: 3}
+    - target: {fileID: 7224542539528306867, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: groundLightning
       value: 
       objectReference: {fileID: 2506176506040683606, guid: ff230bbfa88a9b244b42aaf469855924, type: 3}
