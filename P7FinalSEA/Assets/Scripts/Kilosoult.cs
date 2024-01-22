@@ -12,6 +12,7 @@ public class Kilosoult : MonoBehaviour
     public GameObject lightningX;
     public GameObject rotatingLightning;
     public GameObject phaseTwoLightning;
+    public GameObject groundLightning;
     public GameObject bossModel;
     Animator bossAnim;
     public Transform playerCam;
@@ -19,10 +20,12 @@ public class Kilosoult : MonoBehaviour
     int phaseMulti = 1;
     bool teleporting = true;
     bool souled = false;
+    bool flyUp = false;
     public float teleportTimer;
     public float attackTimer;
     public int soulTimer = 0;
     int xLightningTimer;
+    float teleportDivisor = 1f;
     Light lighting;
     Damageable damagin;
 
@@ -42,6 +45,11 @@ public class Kilosoult : MonoBehaviour
     {
         transform.LookAt(GameObject.Find("PlayerCam").transform.position);
         PhaseCheck();
+
+        if (flyUp)
+        {
+            transform.Translate(Vector3.up * 16 * Time.deltaTime);
+        }
     }
 
     void PhaseCheck()
@@ -83,17 +91,21 @@ public class Kilosoult : MonoBehaviour
             else if (damagin.health > damagin.initialHealth * 0.15f)
             {
                 var randomCoroutine = Random.Range(0, 10);
-                if (randomCoroutine <= 4)
+                if ((randomCoroutine <= 4 && phaseMulti == 1) || (randomCoroutine <= 3 && phaseMulti == 2))
                 {
                     StartCoroutine(XLightningCoroutine());
                 }
-                else if (randomCoroutine <= 6 && randomCoroutine > 4)
+                else if ((randomCoroutine <= 6 && randomCoroutine > 4 && phaseMulti == 1) || (randomCoroutine <= 5 && randomCoroutine > 3 && phaseMulti == 2))
                 {
                     StartCoroutine(SoulCoroutine());
                 }
-                else if (randomCoroutine > 6)
+                else if ((randomCoroutine > 6 && randomCoroutine <= 8 && phaseMulti == 2) || (randomCoroutine > 6 && phaseMulti == 1))
                 {
                     StartCoroutine(DashCoroutine());
+                }
+                else if (randomCoroutine > 8 || phaseMulti == 2)
+                {
+                    StartCoroutine(SlamCoroutine());
                 }
             }
         }
@@ -199,6 +211,27 @@ public class Kilosoult : MonoBehaviour
         }
     }
 
+    IEnumerator SlamCoroutine()
+    {
+        buildUp.SetActive(true);
+        lighting.range = 24f;
+        lighting.intensity = 8f;
+        yield return new WaitForSeconds(0.5f);
+        transform.Translate(Vector3.up * 100f);
+        yield return new WaitForSeconds(2.5f);
+        Vector3 summonPos = GameObject.Find("Player").transform.position - Vector3.up * GameObject.Find("Player").transform.position.y;
+        transform.position = new Vector3(GameObject.Find("Player").transform.position.x, -2.0f, GameObject.Find("Player").transform.position.z);
+        flyUp = true;
+        yield return new WaitForSeconds(0.5f);
+        flyUp = false;
+        Instantiate(groundLightning, summonPos, Quaternion.identity);
+        lighting.range = 12f;
+        lighting.intensity = 4f;
+        StartCoroutine(AttackCoroutine());
+        buildUp.SetActive(false);
+        StartCoroutine(TeleportCoroutine());
+        StopCoroutine(SlamCoroutine());
+    }
     IEnumerator DashCoroutine()
     {
         int phaseCheck = phaseMulti;
@@ -290,13 +323,14 @@ public class Kilosoult : MonoBehaviour
 
     IEnumerator FranticCoroutine()
     {
+        teleportDivisor += 0.001f;
         Vector3 randomTeleport = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y - 1), Random.Range(-19f, 19f));
         GameObject teleportLocation = Instantiate(dashTarget, randomTeleport, Quaternion.identity);
-        yield return new WaitForSeconds(teleportTimer / 1.5f);
+        yield return new WaitForSeconds(teleportTimer / teleportDivisor);
         xLightningTimer += 1;
         transform.position = randomTeleport;
         Destroy(teleportLocation);
-        if (xLightningTimer >= 4)
+        if (xLightningTimer >= 3)
         {
             int randomRange = Random.Range(0, 4);
             if (randomRange < 3)
