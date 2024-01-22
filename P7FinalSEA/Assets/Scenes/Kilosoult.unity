@@ -21277,7 +21277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256df7860419a7b4e9ecebd0ef7d2f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3.75
+  damage: 4
   eleCannon: 0
   playerProj: 1
   automatic: 1
@@ -54732,6 +54732,10 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 963194228}
+    - target: {fileID: 7224542539528306867, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
+      propertyPath: rotatingLightning
+      value: 
+      objectReference: {fileID: 3235333283036947334, guid: 24e06ed6c1791454cbaaa1d8aec5c10b, type: 3}
     - target: {fileID: 7224542539528306869, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: damage
       value: 50

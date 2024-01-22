@@ -10,7 +10,7 @@ public class Kilosoult : MonoBehaviour
     public GameObject dashTrail;
     public GameObject buildUp;
     public GameObject lightningX;
-    public GameObject franticLightning;
+    public GameObject rotatingLightning;
     public GameObject phaseTwoLightning;
     public GameObject bossModel;
     Animator bossAnim;
@@ -76,11 +76,11 @@ public class Kilosoult : MonoBehaviour
         }
         else
         {
-            if (damagin.health <= damagin.initialHealth *0.1f && GameObject.FindWithTag("Spark") == null)
+            if (damagin.health <= damagin.initialHealth *0.15f && GameObject.FindWithTag("Spark") == null)
             {
                 StartCoroutine(FranticCoroutine());
             }
-            else if (damagin.health > damagin.initialHealth * 0.1f)
+            else if (damagin.health > damagin.initialHealth * 0.15f)
             {
                 var randomCoroutine = Random.Range(0, 10);
                 if (randomCoroutine <= 4)
@@ -290,24 +290,25 @@ public class Kilosoult : MonoBehaviour
 
     IEnumerator FranticCoroutine()
     {
-        if (damagin.health > damagin.initialHealth*0.15f)
+        Vector3 randomTeleport = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y - 1), Random.Range(-19f, 19f));
+        GameObject teleportLocation = Instantiate(dashTarget, randomTeleport, Quaternion.identity);
+        yield return new WaitForSeconds(teleportTimer / 1.5f);
+        xLightningTimer += 1;
+        transform.position = randomTeleport;
+        Destroy(teleportLocation);
+        if (xLightningTimer >= 4)
         {
-            StartCoroutine(AttackCoroutine());
-        }
-        else
-        {
-            Vector3 randomTeleport = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y-1), Random.Range(-19f, 19f));
-            GameObject teleportLocation = Instantiate(dashTarget, randomTeleport, Quaternion.identity);
-            yield return new WaitForSeconds(teleportTimer/1.5f);
-            xLightningTimer += 1;
-            transform.position = randomTeleport;
-            Destroy(teleportLocation);
-            if (xLightningTimer >= 4)
+            int randomRange = Random.Range(0, 4);
+            if (randomRange < 3)
             {
-                Instantiate(lightningX, new Vector3 (Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
-                xLightningTimer = 0;
+                Instantiate(lightningX, new Vector3(Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
             }
-            StartCoroutine(FranticCoroutine());
+            else
+            {
+                Instantiate(rotatingLightning, new Vector3(Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
+            }
+            xLightningTimer = 0;
         }
+        StartCoroutine(FranticCoroutine());
     }
 }

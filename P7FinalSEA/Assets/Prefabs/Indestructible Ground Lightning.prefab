@@ -13,10 +13,13 @@ GameObject:
   - component: {fileID: 5051975380099491156}
   - component: {fileID: 8048488181751790154}
   - component: {fileID: -5191626267592110164}
-  - component: {fileID: 5611260614730893473}
+  - component: {fileID: 7949374421619105768}
+  - component: {fileID: 6791993451006571636}
+  - component: {fileID: 3881736805525964793}
+  - component: {fileID: 2645229697534185381}
   m_Layer: 0
-  m_Name: Ground Lightning
-  m_TagString: Untagged
+  m_Name: Indestructible Ground Lightning
+  m_TagString: ElecAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +122,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -607,7 +610,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 50
+    maxNumParticles: 25
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -4906,7 +4909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSpawnedThis: {fileID: 0}
---- !u!114 &5611260614730893473
+--- !u!114 &7949374421619105768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4915,9 +4918,61 @@ MonoBehaviour:
   m_GameObject: {fileID: 2506176506040683606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414cbf2c4eee3e342b4544415c81b7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: e4908e07497f1b345801f30cfe7ac9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lightning: {fileID: 6639003541882490693, guid: f55f3d2a28091e6439445f25ade6f392, type: 3}
-  lightningTimer: 0.5
+  lightningTimer: 0.6
   damageMulti: 1
+--- !u!135 &6791993451006571636
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506176506040683606}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.1970203
+  m_Center: {x: 0, y: 0.5000001, z: -0.000000059604645}
+--- !u!114 &3881736805525964793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506176506040683606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256df7860419a7b4e9ecebd0ef7d2f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  eleCannon: 0
+  playerProj: 0
+  automatic: 0
+  parryTrail: 0
+  parryExplosion: {fileID: 0}
+--- !u!114 &2645229697534185381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506176506040683606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f9cdca39598244eb1fd51ee9c4b01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTimer: 10

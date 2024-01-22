@@ -304,6 +304,11 @@ public class PlayerControls : MonoBehaviour
         grounded = false;
         respawning = true;
         GetComponent<Damageable>().damageTaken = 0;
+        GameObject[] attacks = GameObject.FindGameObjectsWithTag("ElecAttack");
+        foreach (GameObject obj in attacks)
+        {
+            Destroy(obj);
+        }
     }
 
     void OnCollisionStay(Collision collision)
