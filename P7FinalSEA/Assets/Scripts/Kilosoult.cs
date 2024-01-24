@@ -14,6 +14,7 @@ public class Kilosoult : MonoBehaviour
     public GameObject phaseTwoLightning;
     public GameObject groundLightning;
     public GameObject slamIndicate;
+    public GameObject slamLightning;
     public GameObject bossModel;
     Animator bossAnim;
     public Transform playerCam;
@@ -49,7 +50,7 @@ public class Kilosoult : MonoBehaviour
 
         if (flyUp)
         {
-            transform.Translate(Vector3.up * 36 * Time.deltaTime);
+            transform.Translate(Vector3.up * 84 * Time.deltaTime, Space.World);
         }
     }
 
@@ -85,22 +86,22 @@ public class Kilosoult : MonoBehaviour
         }
         else
         {
-            if (damagin.health <= damagin.initialHealth *0.15f && GameObject.FindWithTag("Spark") == null)
+            if (damagin.health <= damagin.initialHealth *0.2f && GameObject.FindWithTag("Spark") == null)
             {
                 StartCoroutine(FranticCoroutine());
             }
-            else if (damagin.health > damagin.initialHealth * 0.15f)
+            else if (damagin.health > damagin.initialHealth * 0.2f)
             {
                 var randomCoroutine = Random.Range(0, 10);
-                if ((randomCoroutine <= 4 && phaseMulti == 1) || (randomCoroutine <= 3 && phaseMulti == 2))
+                if ((randomCoroutine <= 5 && phaseMulti == 1) || (randomCoroutine <= 4 && phaseMulti == 2))
                 {
                     StartCoroutine(XLightningCoroutine());
                 }
-                else if ((randomCoroutine <= 6 && randomCoroutine > 4 && phaseMulti == 1) || (randomCoroutine <= 5 && randomCoroutine > 3 && phaseMulti == 2))
+                else if ((randomCoroutine <= 7 && randomCoroutine > 5 && phaseMulti == 1) || (randomCoroutine <= 5 && randomCoroutine > 4 && phaseMulti == 2))
                 {
                     StartCoroutine(SoulCoroutine());
                 }
-                else if ((randomCoroutine > 6 && randomCoroutine <= 8 && phaseMulti == 2) || (randomCoroutine > 6 && phaseMulti == 1))
+                else if ((randomCoroutine > 5 && randomCoroutine <= 8 && phaseMulti == 2) || (randomCoroutine > 7 && phaseMulti == 1))
                 {
                     StartCoroutine(DashCoroutine());
                 }
@@ -219,14 +220,13 @@ public class Kilosoult : MonoBehaviour
         lighting.intensity = 8f;
         yield return new WaitForSeconds(0.5f);
         Instantiate(slamIndicate, transform.position, Quaternion.identity);
-        transform.Translate(Vector3.up * 100f);
+        flyUp = true;
         yield return new WaitForSeconds(2.75f);
         Vector3 summonPos = GameObject.Find("Player").transform.position - Vector3.up * GameObject.Find("Player").transform.position.y;
-        transform.position = new Vector3(GameObject.Find("Player").transform.position.x, -2.0f, GameObject.Find("Player").transform.position.z);
-        flyUp = true;
+        transform.position = summonPos - Vector3.up * 10f;
         yield return new WaitForSeconds((1f)/(4f));
         flyUp = false;
-        Instantiate(groundLightning, summonPos, Quaternion.identity);
+        Instantiate(slamLightning, summonPos, Quaternion.identity);
         lighting.range = 12f;
         lighting.intensity = 4f;
         StartCoroutine(AttackCoroutine());
@@ -271,14 +271,14 @@ public class Kilosoult : MonoBehaviour
         {
             phaseDash.SetActive(true);
         }
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.8f / (phaseMulti));
         if (phaseMulti == 2)
         {
             targets[5] = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, GameObject.Find("Player").transform.position.z);
         }
         for (int i = 0; i < (3*phaseMulti); i++)
         {
-            yield return new WaitForSeconds(teleportTimer / 4f);
+            yield return new WaitForSeconds(teleportTimer / 4.5f);
             transform.position = targets[i];
             RaycastHit hit;
             if (i == 0)
@@ -325,26 +325,37 @@ public class Kilosoult : MonoBehaviour
 
     IEnumerator FranticCoroutine()
     {
-        teleportDivisor += 0.001f;
-        Vector3 randomTeleport = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y - 1), Random.Range(-19f, 19f));
-        GameObject teleportLocation = Instantiate(dashTarget, randomTeleport, Quaternion.identity);
-        yield return new WaitForSeconds(teleportTimer / teleportDivisor);
-        xLightningTimer += 1;
-        transform.position = randomTeleport;
-        Destroy(teleportLocation);
-        if (xLightningTimer >= 3)
+        if (damagin.health >= damagin.initialHealth * 0.2f)
         {
-            int randomRange = Random.Range(0, 4);
-            if (randomRange < 3)
-            {
-                Instantiate(lightningX, new Vector3(Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(rotatingLightning, new Vector3(Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
-            }
-            xLightningTimer = 0;
+            StartCoroutine(AttackCoroutine());
+            StartCoroutine(TeleportCoroutine());
+            teleportDivisor = 1;
+            phaseMulti = 1;
+            StopCoroutine(FranticCoroutine());
         }
-        StartCoroutine(FranticCoroutine());
+        else
+        {
+            teleportDivisor += 0.001f;
+            Vector3 randomTeleport = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y - 1), Random.Range(-19f, 19f));
+            GameObject teleportLocation = Instantiate(dashTarget, randomTeleport, Quaternion.identity);
+            yield return new WaitForSeconds(teleportTimer / (teleportDivisor * 1.25f));
+            xLightningTimer += 1;
+            transform.position = randomTeleport;
+            Destroy(teleportLocation);
+            if (xLightningTimer >= 3)
+            {
+                int randomRange = Random.Range(0, 4);
+                if (randomRange < 3)
+                {
+                    Instantiate(lightningX, new Vector3(Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(rotatingLightning, new Vector3(Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
+                }
+                xLightningTimer = 0;
+            }
+            StartCoroutine(FranticCoroutine());
+        }
     }
 }

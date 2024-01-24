@@ -103,7 +103,7 @@ public class ParryBlock : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if (other.gameObject.CompareTag("ElecAttack"))
+        else if (other.gameObject.CompareTag("ElecAttack") || other.gameObject.CompareTag("Elecannon"))
         {
             float damaage = other.gameObject.GetComponent<DamageField>().damage;
             GameObject[] woods = GameObject.FindGameObjectsWithTag("Parry");

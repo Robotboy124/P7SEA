@@ -14913,7 +14913,7 @@ GameObject:
   - component: {fileID: 1238155270}
   m_Layer: 10
   m_Name: Elecannon Trail
-  m_TagString: ElecAttack
+  m_TagString: Elecannon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54716,13 +54716,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3054559782631102834, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7224542539528306866, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: m_Name
       value: Kilosoult
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224542539528306866, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7224542539528306867, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: roof
@@ -54732,26 +54732,6 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 963194228}
-    - target: {fileID: 7224542539528306867, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
-      propertyPath: slamIndicate
-      value: 
-      objectReference: {fileID: 2506176506040683606, guid: c3b3fd245a8165e429fb19ba288e4f5f, type: 3}
-    - target: {fileID: 7224542539528306867, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
-      propertyPath: groundLightning
-      value: 
-      objectReference: {fileID: 2506176506040683606, guid: ff230bbfa88a9b244b42aaf469855924, type: 3}
-    - target: {fileID: 7224542539528306867, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
-      propertyPath: rotatingLightning
-      value: 
-      objectReference: {fileID: 3235333283036947334, guid: 24e06ed6c1791454cbaaa1d8aec5c10b, type: 3}
-    - target: {fileID: 7224542539528306869, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
-      propertyPath: damage
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224542539528306871, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7224542539528306871, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -54791,10 +54771,6 @@ PrefabInstance:
     - target: {fileID: 7224542539528306871, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224542539528306874, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
-      propertyPath: health
-      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 7224542539528306874, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       propertyPath: healths
