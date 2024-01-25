@@ -36,4 +36,12 @@ public class HealthBar : MonoBehaviour
             healthPercent.text = Mathf.CeilToInt((damage/sliding.maxValue)*100) + "%";
         }
     }
+
+    void Update()
+    {
+        if (objectTracking == null)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

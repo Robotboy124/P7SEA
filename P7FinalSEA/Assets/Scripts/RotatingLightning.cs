@@ -5,6 +5,10 @@ using UnityEngine;
 public class RotatingLightning : MonoBehaviour
 {
     public GameObject groundLightning;
+    public float initRotateSpeed;
+    public float maxRotateSpeed;
+    float rotateAccel;
+    float currentRotateSpeed;
 
     private void Awake()
     {
@@ -14,13 +18,16 @@ public class RotatingLightning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentRotateSpeed = initRotateSpeed;
         StartCoroutine(XLightningSummon());
+        rotateAccel = (maxRotateSpeed-initRotateSpeed)/(groundLightning.GetComponent<DestroyAfterCreate>().destroyTimer);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * 60f * Time.deltaTime);
+        currentRotateSpeed += rotateAccel * Time.deltaTime;
+        transform.Rotate(Vector3.up * currentRotateSpeed * Time.deltaTime);
     }
 
     IEnumerator XLightningSummon()

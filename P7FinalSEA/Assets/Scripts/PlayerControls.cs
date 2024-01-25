@@ -106,8 +106,7 @@ public class PlayerControls : MonoBehaviour
         forward = Input.GetAxis("Vertical");
         if (!dashing && !slamming && !respawning)
         {
-            transform.Translate(Vector3.forward * speed * forward * Time.deltaTime);
-            transform.Translate(Vector3.right * speed * left * Time.deltaTime);
+            transform.Translate(((Vector3.forward * forward) + (Vector3.right * left)).normalized * speed * Time.deltaTime);
         }
         transform.rotation = Quaternion.Euler(new Vector3(0, GameObject.Find("PlayerCam").transform.localEulerAngles.y, 0));
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
