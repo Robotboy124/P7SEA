@@ -16,6 +16,18 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((GameObject.Find("Player").GetComponent<PlayerControls>().left != 0 || GameObject.Find("Player").GetComponent<PlayerControls>().forward != 0) && !GameObject.Find("Player").GetComponent<PlayerControls>().dashing)
+        {
+            GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, 70f, 0.03f);
+        }
+        else if (GameObject.Find("Player").GetComponent<PlayerControls>().dashing)
+        {
+            GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, 80f, 0.03f);
+        }
+        else
+        {
+            GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, 60f, 0.03f);
+        }
         Cursor.lockState = CursorLockMode.Locked;
         rotate = Input.GetAxis("Mouse X");
         votate = Input.GetAxis("Mouse Y");

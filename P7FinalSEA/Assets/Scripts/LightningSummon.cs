@@ -24,7 +24,7 @@ public class LightningSummon : MonoBehaviour
     {
         yield return new WaitForSeconds(lightningTimer);
 
-        GameObject lights = Instantiate(lightning, transform.position + Vector3.up*1000, Quaternion.identity);
+        GameObject lights = Instantiate(lightning, transform.position + Vector3.up*800, Quaternion.identity);
         lights.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
         lights.GetComponent<DamageField>().damage *= damageMulti;
         lights.GetComponent<LightningDescend>().yLevel = transform.position.y;

@@ -6,8 +6,8 @@ using TMPro;
 
 public class PlayerControls : MonoBehaviour
 {
-    float left;
-    float forward;
+    public float left;
+    public float forward;
     public float speed;
     public float minimumY;
     public float fireRateInitial = 0.49f;
@@ -26,7 +26,7 @@ public class PlayerControls : MonoBehaviour
     public GameObject tutorialText;
     public GameObject burnOutText;
     float dashStamina;
-    bool dashing = false;
+    public bool dashing = false;
     public bool respawning = true;
     bool dasher = false;
     bool jumpReady = true;
@@ -102,8 +102,8 @@ public class PlayerControls : MonoBehaviour
 
     void BasicMovement()
     {
-        left = Input.GetAxis("Horizontal");
-        forward = Input.GetAxis("Vertical");
+        left = Input.GetAxisRaw("Horizontal");
+        forward = Input.GetAxisRaw("Vertical");
         if (!dashing && !slamming && !respawning)
         {
             transform.Translate(((Vector3.forward * forward) + (Vector3.right * left)).normalized * speed * Time.deltaTime);

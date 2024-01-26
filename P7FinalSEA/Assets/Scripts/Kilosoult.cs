@@ -338,14 +338,14 @@ public class Kilosoult : MonoBehaviour
             teleportDivisor += 0.001f;
             Vector3 randomTeleport = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y - 1), Random.Range(-19f, 19f));
             GameObject teleportLocation = Instantiate(dashTarget, randomTeleport, Quaternion.identity);
-            yield return new WaitForSeconds(teleportTimer / (teleportDivisor * 1.25f));
+            yield return new WaitForSeconds(teleportTimer / (teleportDivisor * 1.35f));
             xLightningTimer += 1;
             transform.position = randomTeleport;
             Destroy(teleportLocation);
             if (xLightningTimer >= 3)
             {
-                int randomRange = Random.Range(0, 4);
-                if (randomRange < 3)
+                int randomRange = Random.Range(0, 5);
+                if (randomRange < 4)
                 {
                     Instantiate(lightningX, new Vector3(Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
                 }

@@ -9,7 +9,7 @@ public class XLightning : MonoBehaviour
 
     private void Awake()
     {
-        transform.LookAt(new Vector3(GameObject.Find("Player").transform.position.x + Random.Range(-5.0f, 5.0f), 0.5f, GameObject.Find("Player").transform.position.z + Random.Range(-5.0f, 5.0f)));
+        transform.LookAt(new Vector3(GameObject.Find("Player").transform.position.x + Random.Range(-3.0f, 3.0f), 0.5f, GameObject.Find("Player").transform.position.z + Random.Range(-3.0f, 3.0f)));
     }
 
     // Start is called before the first frame update
