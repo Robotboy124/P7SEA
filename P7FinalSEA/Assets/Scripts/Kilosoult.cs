@@ -86,7 +86,7 @@ public class Kilosoult : MonoBehaviour
         }
         else
         {
-            if (damagin.health <= damagin.initialHealth *0.2f && GameObject.FindWithTag("Spark") == null)
+            if (damagin.health <= damagin.initialHealth *0.2f)
             {
                 StartCoroutine(FranticCoroutine());
             }
@@ -97,15 +97,15 @@ public class Kilosoult : MonoBehaviour
                 {
                     StartCoroutine(XLightningCoroutine());
                 }
-                else if ((randomCoroutine <= 7 && randomCoroutine > 5 && phaseMulti == 1) || (randomCoroutine <= 5 && randomCoroutine > 4 && phaseMulti == 2))
+                else if ((randomCoroutine <= 7 && randomCoroutine > 5 && phaseMulti == 1))
                 {
                     StartCoroutine(SoulCoroutine());
                 }
-                else if ((randomCoroutine > 5 && randomCoroutine <= 8 && phaseMulti == 2) || (randomCoroutine > 7 && phaseMulti == 1))
+                else if ((randomCoroutine > 4 && randomCoroutine <= 7 && phaseMulti == 2) || (randomCoroutine > 7 && phaseMulti == 1))
                 {
                     StartCoroutine(DashCoroutine());
                 }
-                else if (randomCoroutine > 8 || phaseMulti == 2)
+                else if (randomCoroutine > 7 || phaseMulti == 2)
                 {
                     StartCoroutine(SlamCoroutine());
                 }
@@ -139,7 +139,7 @@ public class Kilosoult : MonoBehaviour
     {
         bossAnim.ResetTrigger("isIdle");
         bossAnim.SetTrigger("bigAttack");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f / (Mathf.Pow(phaseMulti, 0.85f)));
 
         for(int i = 0; i<(1*phaseMulti); i++)
         {
@@ -153,7 +153,7 @@ public class Kilosoult : MonoBehaviour
         {
             soulTimer += 1;
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f / (Mathf.Pow(phaseMulti, 0.75f)));
         StartCoroutine(AttackCoroutine());
         teleporting = true;
         StartCoroutine(TeleportCoroutine());
@@ -218,6 +218,7 @@ public class Kilosoult : MonoBehaviour
         buildUp.SetActive(true);
         lighting.range = 24f;
         lighting.intensity = 8f;
+        lighting.color = new Color((14f/255f), (14f/255f), 204f / 255f, 1f);
         yield return new WaitForSeconds(0.5f);
         Instantiate(slamIndicate, transform.position, Quaternion.identity);
         flyUp = true;
@@ -229,6 +230,8 @@ public class Kilosoult : MonoBehaviour
         Instantiate(slamLightning, summonPos, Quaternion.identity);
         lighting.range = 12f;
         lighting.intensity = 4f;
+        teleporting = true;
+        lighting.color = new Color(253f / 255f, 229f / 255f, 8f / 255f, 255f / 255f);
         StartCoroutine(AttackCoroutine());
         buildUp.SetActive(false);
         StartCoroutine(TeleportCoroutine());
@@ -271,14 +274,14 @@ public class Kilosoult : MonoBehaviour
         {
             phaseDash.SetActive(true);
         }
-        yield return new WaitForSeconds(0.8f / (phaseMulti));
+        yield return new WaitForSeconds(0.8f / Mathf.Pow(phaseMulti, 1.2f));
         if (phaseMulti == 2)
         {
             targets[5] = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, GameObject.Find("Player").transform.position.z);
         }
         for (int i = 0; i < (3*phaseMulti); i++)
         {
-            yield return new WaitForSeconds(teleportTimer / 4.5f);
+            yield return new WaitForSeconds(teleportTimer / 5.5f);
             transform.position = targets[i];
             RaycastHit hit;
             if (i == 0)
@@ -306,7 +309,7 @@ public class Kilosoult : MonoBehaviour
         {
             soulTimer += 1;
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f / (Mathf.Pow(phaseMulti, 0.75f)));
         GameObject[] dashers = GameObject.FindGameObjectsWithTag("DashTarget");
         for (int i = 0; i < dashers.Length; i++)
         {
@@ -338,20 +341,25 @@ public class Kilosoult : MonoBehaviour
             teleportDivisor += 0.001f;
             Vector3 randomTeleport = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y - 1), Random.Range(-19f, 19f));
             GameObject teleportLocation = Instantiate(dashTarget, randomTeleport, Quaternion.identity);
-            yield return new WaitForSeconds(teleportTimer / (teleportDivisor * 1.35f));
+            yield return new WaitForSeconds(teleportTimer / (teleportDivisor * 1.6f));
             xLightningTimer += 1;
             transform.position = randomTeleport;
             Destroy(teleportLocation);
             if (xLightningTimer >= 3)
             {
-                int randomRange = Random.Range(0, 5);
-                if (randomRange < 4)
+                int randomRange = Random.Range(0, 9);
+                if (randomRange < 7)
                 {
                     Instantiate(lightningX, new Vector3(Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
                 }
-                else
+                else if (randomRange == 7)
                 {
                     Instantiate(rotatingLightning, new Vector3(Random.Range(-19f, 19f), 0.5f, Random.Range(-19f, 19f)), Quaternion.identity);
+                }
+                else if (randomRange > 7)
+                {
+                    GameObject instantiatedBigBolt = Instantiate(slamLightning, GameObject.Find("Player").transform.position - Vector3.up * GameObject.Find("Player").transform.position.y, Quaternion.identity);
+                    instantiatedBigBolt.GetComponent<LightningSummon>().lightningTimer = 1.0f;
                 }
                 xLightningTimer = 0;
             }

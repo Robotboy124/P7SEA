@@ -1300,7 +1300,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 105734778c40edc46a927eb526d6d195, type: 2}
+  - {fileID: 2100000, guid: 54c0479e92e7023418239f2314854197, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6570,7 +6570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286cf572dfea6584980a48a4306ff6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 750
+  health: 1200
   initialHealth: 0
   healths: {fileID: 0}
   deathText: {fileID: 0}
@@ -6611,7 +6611,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -16942,7 +16942,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 105734778c40edc46a927eb526d6d195, type: 2}
+  - {fileID: 2100000, guid: 54c0479e92e7023418239f2314854197, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

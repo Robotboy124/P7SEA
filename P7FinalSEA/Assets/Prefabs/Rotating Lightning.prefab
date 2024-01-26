@@ -60,4 +60,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLightning: {fileID: 2506176506040683606, guid: 1d23a8c4b0e49ba468f814170dc8d463, type: 3}
   initRotateSpeed: 15
-  maxRotateSpeed: 90
+  maxRotateSpeed: 60
