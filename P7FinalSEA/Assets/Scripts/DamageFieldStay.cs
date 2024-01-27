@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageField : MonoBehaviour
+public class DamageFieldStay : MonoBehaviour
 {
-
     public float damage;
     public bool eleCannon;
     public bool playerProj;
@@ -15,7 +14,7 @@ public class DamageField : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,20 +22,20 @@ public class DamageField : MonoBehaviour
     {
         if (eleCannon)
         {
-            damage = GameObject.Find("Player").GetComponent<Damageable>().damageTaken * 2.5f;
+            damage = GameObject.Find("Player").GetComponent<Damageable>().damageTaken * 3f;
         }
     }
 
 
-    public void OnTriggerEnter(Collider collision)
+    public void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject == GameObject.Find("Player") && !playerProj)
         {
-            collision.gameObject.GetComponent<Damageable>().Damaged(damage);
+            collision.gameObject.GetComponent<Damageable>().Damaged(damage * Time.deltaTime);
         }
         else if (playerProj && collision.gameObject != GameObject.Find("Player") && collision.gameObject.GetComponent<Damageable>() != null)
         {
-            collision.gameObject.GetComponent<Damageable>().Damaged(damage);
+            collision.gameObject.GetComponent<Damageable>().Damaged(damage * Time.deltaTime);
         }
 
         if (parryTrail && collision.gameObject.GetComponent<Damageable>() != null)

@@ -106,7 +106,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 20
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4935,9 +4935,9 @@ GameObject:
   - component: {fileID: 8979122840631910000}
   - component: {fileID: 9056118715605747494}
   - component: {fileID: -8086219598988919313}
-  - component: {fileID: -7990332801796419927}
   - component: {fileID: -5625277248240974}
   - component: {fileID: 1939046593277320372}
+  - component: {fileID: 5150350366857492550}
   m_Layer: 0
   m_Name: Slam Lightning
   m_TagString: ElecAttack
@@ -5047,25 +5047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f9cdca39598244eb1fd51ee9c4b01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTimer: 6
---- !u!114 &-7990332801796419927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6639003541882490693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256df7860419a7b4e9ecebd0ef7d2f53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 40
-  eleCannon: 0
-  playerProj: 0
-  automatic: 0
-  parryTrail: 0
-  parryExplosion: {fileID: 0}
+  destroyTimer: 8
 --- !u!114 &-5625277248240974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5092,3 +5074,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yLevel: 0
+--- !u!114 &5150350366857492550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6639003541882490693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0dd4a37ec8e9948af9c20a8bd293f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 40
+  eleCannon: 0
+  playerProj: 0
+  automatic: 0
+  parryTrail: 0
+  parryExplosion: {fileID: 0}

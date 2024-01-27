@@ -4919,5 +4919,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightning: {fileID: 6639003541882490693, guid: 7250b24fe319a5d4394885cec7618aa2, type: 3}
+  blueLightning: 1
   lightningTimer: 0.5
   damageMulti: 1

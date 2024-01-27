@@ -4752,6 +4752,7 @@ MonoBehaviour:
   left: 0
   forward: 0
   speed: 30
+  speedInit: 0
   minimumY: -140
   fireRateInitial: 0.49
   fireRate: 0
@@ -4777,6 +4778,7 @@ MonoBehaviour:
   burnOutText: {fileID: 1511993603}
   dashing: 0
   respawning: 0
+  burstFire: 0
   maxAutoBurnOut: 18
   burstCount: 0
   updatingBurnOut: 0
@@ -21740,7 +21742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256df7860419a7b4e9ecebd0ef7d2f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 7
+  damage: 5
   eleCannon: 0
   playerProj: 1
   automatic: 1
@@ -48351,6 +48353,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064535215}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2064590795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064590796}
+  - component: {fileID: 2064590797}
+  m_Layer: 0
+  m_Name: Rotate Blue Lightning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2064590796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064590795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2064590797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064590795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9f82cf21b4a8c49b020c63301ee877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2072966755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55591,3 +55637,4 @@ SceneRoots:
   - {fileID: 199347507}
   - {fileID: 573396059}
   - {fileID: 2048910478}
+  - {fileID: 2064590796}

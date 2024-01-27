@@ -4683,6 +4683,7 @@ MonoBehaviour:
   left: 0
   forward: 0
   speed: 30
+  speedInit: 0
   minimumY: -140
   fireRateInitial: 0.49
   fireRate: 0
@@ -4710,6 +4711,7 @@ MonoBehaviour:
   respawning: 0
   burstFire: 0
   maxAutoBurnOut: 20
+  burstCount: 0
   updatingBurnOut: 0
   gravityScale: 3.5
   jumpForce: 13
@@ -21744,7 +21746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256df7860419a7b4e9ecebd0ef7d2f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 7
+  damage: 5
   eleCannon: 0
   playerProj: 1
   automatic: 1

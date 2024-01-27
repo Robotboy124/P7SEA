@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightningSummon : MonoBehaviour
 {
     public GameObject lightning;
+    public bool blueLightning;
     public float lightningTimer;
     public float damageMulti = 1;
 
@@ -24,10 +25,21 @@ public class LightningSummon : MonoBehaviour
     {
         yield return new WaitForSeconds(lightningTimer);
 
-        GameObject lights = Instantiate(lightning, transform.position + Vector3.up*800, Quaternion.identity);
-        lights.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
-        lights.GetComponent<DamageField>().damage *= damageMulti;
-        lights.GetComponent<LightningDescend>().yLevel = transform.position.y;
-        Destroy(gameObject);
+        if (blueLightning)
+        {
+            GameObject lights = Instantiate(lightning, transform.position + Vector3.up * 800, Quaternion.identity, GameObject.Find("Rotate Blue Lightning").transform);
+            lights.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
+            lights.GetComponent<DamageFieldStay>().damage *= damageMulti;
+            lights.GetComponent<LightningDescend>().yLevel = transform.position.y;
+            Destroy(gameObject);
+        }
+        else
+        {
+            GameObject lights = Instantiate(lightning, transform.position + Vector3.up * 800, Quaternion.identity);
+            lights.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
+            lights.GetComponent<DamageField>().damage *= damageMulti;
+            lights.GetComponent<LightningDescend>().yLevel = transform.position.y;
+            Destroy(gameObject);
+        }
     }
 }
