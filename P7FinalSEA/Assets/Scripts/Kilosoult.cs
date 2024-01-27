@@ -230,13 +230,15 @@ public class Kilosoult : MonoBehaviour
         Instantiate(slamLightning, summonPos, Quaternion.identity);
         lighting.range = 12f;
         lighting.intensity = 4f;
-        teleporting = true;
         lighting.color = new Color(253f / 255f, 229f / 255f, 8f / 255f, 255f / 255f);
+        yield return new WaitForSeconds(0.75f);
+        teleporting = true;
         StartCoroutine(AttackCoroutine());
         buildUp.SetActive(false);
         StartCoroutine(TeleportCoroutine());
         StopCoroutine(SlamCoroutine());
     }
+
     IEnumerator DashCoroutine()
     {
         int phaseCheck = phaseMulti;
@@ -341,7 +343,7 @@ public class Kilosoult : MonoBehaviour
             teleportDivisor += 0.001f;
             Vector3 randomTeleport = new Vector3(Random.Range(-19f, 19f), Random.Range(1.75f, roof.position.y - 1), Random.Range(-19f, 19f));
             GameObject teleportLocation = Instantiate(dashTarget, randomTeleport, Quaternion.identity);
-            yield return new WaitForSeconds(teleportTimer / (teleportDivisor * 1.6f));
+            yield return new WaitForSeconds(teleportTimer / (teleportDivisor * 1.4f));
             xLightningTimer += 1;
             transform.position = randomTeleport;
             Destroy(teleportLocation);

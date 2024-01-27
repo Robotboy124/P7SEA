@@ -9,6 +9,7 @@ public class PlayerControls : MonoBehaviour
     public float left;
     public float forward;
     public float speed;
+    public float speedInit;
     public float minimumY;
     public float fireRateInitial = 0.49f;
     public float fireRate;
@@ -31,10 +32,10 @@ public class PlayerControls : MonoBehaviour
     bool dasher = false;
     bool jumpReady = true;
     bool automatic = false;
-    int burstFire = 0;
+    public int burstFire = 0;
     public int maxAutoBurnOut;
-    int burstCount;
-    int updatingBurnOut;
+    public int burstCount;
+    public int updatingBurnOut;
     float dashChargeMulti = 1;
     float globalGravity = -0.9f;
     public float gravityScale = 1.0f;
@@ -47,6 +48,7 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speedInit = speed;
         currentParry = maxParry;
         updatingBurnOut = maxAutoBurnOut;
         fireRateInitial = reloadTimes[Mathf.FloorToInt(weaponScrollWheel)];
@@ -59,6 +61,14 @@ public class PlayerControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (automatic)
+        {
+            speed = speedInit * 0.7f;
+        }
+        else
+        {
+            speed = speedInit;
+        }
         if (!dashing)
         {
             dashStamina += Time.deltaTime * (1f/3f) * dashChargeMulti;

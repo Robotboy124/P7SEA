@@ -18,7 +18,7 @@ public class CameraMove : MonoBehaviour
     {
         if ((GameObject.Find("Player").GetComponent<PlayerControls>().left != 0 || GameObject.Find("Player").GetComponent<PlayerControls>().forward != 0) && !GameObject.Find("Player").GetComponent<PlayerControls>().dashing)
         {
-            GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, 70f, 0.03f);
+            GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, 60f + 10f * (GameObject.Find("Player").GetComponent<PlayerControls>().speed/GameObject.Find("Player").GetComponent<PlayerControls>().speedInit), 0.03f);
         }
         else if (GameObject.Find("Player").GetComponent<PlayerControls>().dashing)
         {
@@ -34,13 +34,20 @@ public class CameraMove : MonoBehaviour
         transform.RotateAround(transform.position, Vector3.up, rotate * 720 * sensitivity * Time.deltaTime);
         transform.Rotate(Vector3.right, votate * -720 * sensitivity* Time.deltaTime);
         transform.position = GameObject.Find("Player").transform.position + Vector3.up*0.5f;
-        if (transform.rotation.x >= 90)
+        if (transform.localEulerAngles.x < 280 && transform.localEulerAngles.x > 180)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(90, transform.rotation.y, transform.rotation.z));
+            transform.localRotation = Quaternion.Euler(new Vector3(280, transform.localEulerAngles.y, transform.localEulerAngles.z));
         }
-        if (transform.rotation.x <= -90)
+        else if (transform.localEulerAngles.x > 80 && transform.localEulerAngles.x < 180)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(-90, transform.rotation.y, transform.rotation.z));
+            transform.localRotation = Quaternion.Euler(new Vector3(80, transform.localEulerAngles.y, transform.localEulerAngles.z));
         }
+
+        if (transform.localEulerAngles.z != 0 && transform.localEulerAngles.z != 180)
+        {
+            transform.localRotation = Quaternion.Euler(new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0));
+        }
+
+        Debug.Log(transform.localEulerAngles.x);
     }
 }

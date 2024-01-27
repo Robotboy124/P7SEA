@@ -1952,7 +1952,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 307f175815010714ab42d7118d1d0449, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.7
   m_Pitch: 1
@@ -2038,6 +2038,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &141804185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141804176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd377b82d3322b4d9a3751fe9f86448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phaseMusic:
+  - {fileID: 8300000, guid: 307f175815010714ab42d7118d1d0449, type: 3}
+  - {fileID: 8300000, guid: 955fab08a9728924fa6fea395c207e40, type: 3}
+  - {fileID: 8300000, guid: f208991b4dcd6974db453f0926aa33a9, type: 3}
+  speakers: {fileID: 141804184}
+  health: {fileID: 141804188}
+--- !u!114 &141804188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7224542539528306874, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
+  m_PrefabInstance: {fileID: 7224542539661656610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141804176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286cf572dfea6584980a48a4306ff6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &142924356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4749,8 +4778,10 @@ MonoBehaviour:
   dashing: 0
   respawning: 0
   maxAutoBurnOut: 18
+  burstCount: 0
+  updatingBurnOut: 0
   gravityScale: 3.5
-  jumpForce: 14
+  jumpForce: 13
   parryBlock: {fileID: 2174231092939647118, guid: 0679c67b414b6b3419a8d13b6af94fd0, type: 3}
   maxParry: 4
   currentParry: 0
@@ -21689,6 +21720,7 @@ GameObject:
   - component: {fileID: 1374407951}
   - component: {fileID: 1374407950}
   - component: {fileID: 1374407949}
+  - component: {fileID: 1374407954}
   m_Layer: 10
   m_Name: Automatic Trail
   m_TagString: Untagged
@@ -21708,7 +21740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256df7860419a7b4e9ecebd0ef7d2f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 6
+  damage: 7
   eleCannon: 0
   playerProj: 1
   automatic: 1
@@ -21869,6 +21901,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1374407954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374407948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6faf665de59b134598aff5b01dc36bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: {fileID: 1374407949}
+  player: {fileID: 327373950}
 --- !u!1 &1385331137
 GameObject:
   m_ObjectHideFlags: 0
@@ -55374,6 +55420,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7224542539528306866, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 141804184}
+    - targetCorrespondingSourceObject: {fileID: 7224542539528306866, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 141804185}
   m_SourcePrefab: {fileID: 100100000, guid: ad6cdf075d509fa41a34d9be211a79ac, type: 3}
 --- !u!1001 &8003003688074781951
 PrefabInstance:
