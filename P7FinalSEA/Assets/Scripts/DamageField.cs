@@ -23,7 +23,7 @@ public class DamageField : MonoBehaviour
     {
         if (eleCannon)
         {
-            damage = GameObject.Find("Player").GetComponent<Damageable>().damageTaken * 2.5f;
+            damage = GameObject.Find("Player").GetComponent<Damageable>().damageTaken * 2f;
         }
     }
 
