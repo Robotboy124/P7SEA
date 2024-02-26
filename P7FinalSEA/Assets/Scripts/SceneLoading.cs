@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoading : MonoBehaviour
 {
+    public string sceneName;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,11 @@ public class SceneLoading : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("Kilosoult");
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void LoadPress()
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

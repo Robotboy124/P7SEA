@@ -47,7 +47,5 @@ public class CameraMove : MonoBehaviour
         {
             transform.localRotation = Quaternion.Euler(new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0));
         }
-
-        Debug.Log(transform.localEulerAngles.x);
     }
 }

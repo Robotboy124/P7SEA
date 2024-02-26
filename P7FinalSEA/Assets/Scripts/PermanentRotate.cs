@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PermanentRotate : MonoBehaviour
 {
+    public float rotateSpeed = 45f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,6 @@ public class PermanentRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * 45f * Time.deltaTime);
+        transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
     }
 }

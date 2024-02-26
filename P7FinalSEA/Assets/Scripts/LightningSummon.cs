@@ -27,7 +27,7 @@ public class LightningSummon : MonoBehaviour
 
         if (blueLightning)
         {
-            GameObject lights = Instantiate(lightning, transform.position + Vector3.up * 800, Quaternion.identity, GameObject.Find("Rotate Blue Lightning").transform);
+            GameObject lights = Instantiate(lightning, transform.position + Vector3.up * 800, Quaternion.identity);
             lights.GetComponent<InstantiatedAttack>().ObjectUpdate(GetComponent<InstantiatedAttack>().objectSpawnedThis);
             lights.GetComponent<DamageFieldStay>().damage *= damageMulti;
             lights.GetComponent<LightningDescend>().yLevel = transform.position.y;

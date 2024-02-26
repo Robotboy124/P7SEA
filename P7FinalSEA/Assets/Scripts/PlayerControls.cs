@@ -20,7 +20,7 @@ public class PlayerControls : MonoBehaviour
     public GameObject[] projTrails;
     public float[] reloadTimes;
     float weaponScrollWheel = 1;
-    int actualScroll;
+    public int actualScroll;
     public float dashCount = 0f;
     public float maxDashStamina;
     public GameObject slamEffect;
@@ -38,7 +38,7 @@ public class PlayerControls : MonoBehaviour
     public int updatingBurnOut;
     float dashChargeMulti = 1;
     float globalGravity = -0.9f;
-    public float gravityScale = 1.0f;
+    public float gravityScale = 3.5f;
     public float jumpForce = 13f;
     Rigidbody rb;
     public GameObject parryBlock;

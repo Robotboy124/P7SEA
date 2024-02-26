@@ -19,7 +19,5 @@ public class AutomaticScripting : MonoBehaviour
         float burst = player.burstFire;
         float maxAutoBurn = player.maxAutoBurnOut;
         damage.damage = damageInit * (1f - (burst/maxAutoBurn)) * Mathf.Pow(player.burstCount+1, 0.4f);
-        Debug.Log(damageInit);
-        Debug.Log(damage.damage);
     }
 }

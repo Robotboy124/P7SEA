@@ -216,8 +216,8 @@ public class Kilosoult : MonoBehaviour
     IEnumerator SlamCoroutine()
     {
         buildUp.SetActive(true);
-        lighting.range = 24f;
-        lighting.intensity = 8f;
+        lighting.range = 36f;
+        lighting.intensity = 12f;
         lighting.color = new Color((14f/255f), (14f/255f), 204f / 255f, 1f);
         yield return new WaitForSeconds(0.5f);
         Instantiate(slamIndicate, transform.position, Quaternion.identity);
@@ -228,8 +228,8 @@ public class Kilosoult : MonoBehaviour
         yield return new WaitForSeconds((1f)/(4f));
         flyUp = false;
         Instantiate(slamLightning, summonPos, Quaternion.identity);
-        lighting.range = 12f;
-        lighting.intensity = 4f;
+        lighting.range = 18f;
+        lighting.intensity = 6f;
         lighting.color = new Color(253f / 255f, 229f / 255f, 8f / 255f, 255f / 255f);
         yield return new WaitForSeconds(0.75f);
         teleporting = true;
@@ -243,8 +243,8 @@ public class Kilosoult : MonoBehaviour
     {
         int phaseCheck = phaseMulti;
         buildUp.SetActive(true);
-        lighting.range = 24f;
-        lighting.intensity = 8f;
+        lighting.range = 36f;
+        lighting.intensity = 12f;
         Vector3[] targets;
         transform.position = new Vector3(transform.position.x, GameObject.Find("Player").transform.position.y, transform.position.z);
         Vector3 raycastInitial = transform.position;
@@ -319,8 +319,8 @@ public class Kilosoult : MonoBehaviour
         }
         StartCoroutine(AttackCoroutine());
         teleporting = true;
-        lighting.range = 12f;
-        lighting.intensity = 4f;
+        lighting.range = 18f;
+        lighting.intensity = 6f;
         dashTrail.SetActive(false);
         phaseDash.SetActive(false);
         buildUp.SetActive(false);

@@ -4938,6 +4938,7 @@ GameObject:
   - component: {fileID: -5625277248240974}
   - component: {fileID: 1939046593277320372}
   - component: {fileID: 5150350366857492550}
+  - component: {fileID: 8816604886697440087}
   m_Layer: 0
   m_Name: Slam Lightning
   m_TagString: ElecAttack
@@ -5047,7 +5048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f9cdca39598244eb1fd51ee9c4b01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTimer: 8
+  destroyTimer: 14
 --- !u!114 &-5625277248240974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5086,9 +5087,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0dd4a37ec8e9948af9c20a8bd293f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 80
+  damage: 250
   eleCannon: 0
   playerProj: 0
   automatic: 0
   parryTrail: 0
   parryExplosion: {fileID: 0}
+--- !u!114 &8816604886697440087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6639003541882490693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b06934bee69e9469aad52c89ec4e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
