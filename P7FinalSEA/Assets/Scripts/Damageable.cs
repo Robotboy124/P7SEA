@@ -5,7 +5,7 @@ using TMPro;
 
 public class Damageable : MonoBehaviour
 {
-    public float health = 100;
+    public float health;
     public float initialHealth;
     public GameObject healths;
     public GameObject deathText;

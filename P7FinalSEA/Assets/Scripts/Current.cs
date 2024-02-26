@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Current : MonoBehaviour
 {
-    public float speed;
+    float speed = 10f;
     public GameObject projectile;
     public GameObject zapPoint;
     public GameObject[] telePoint;

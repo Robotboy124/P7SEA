@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeactivateAfterTime : MonoBehaviour
 {
 
-    public float deactivateTime = 0.5f;
+    public float deactivateTime;
     // Start is called before the first frame update
     void Start()
     {

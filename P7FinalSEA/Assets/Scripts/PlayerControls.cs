@@ -38,12 +38,12 @@ public class PlayerControls : MonoBehaviour
     public int updatingBurnOut;
     float dashChargeMulti = 1;
     float globalGravity = -0.9f;
-    public float gravityScale = 3.5f;
+    float gravityScale = 3.5f;
     public float jumpForce = 13f;
     Rigidbody rb;
     public GameObject parryBlock;
     float parryRegen = 2.5f;
-    public float maxParry = 3;
+    public float maxParry = 4;
     public float currentParry;
     // Start is called before the first frame update
     void Start()

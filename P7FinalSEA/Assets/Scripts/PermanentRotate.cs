@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PermanentRotate : MonoBehaviour
 {
-    public float rotateSpeed = 45f;
+    public float rotateSpeed;
     // Start is called before the first frame update
     void Start()
     {
