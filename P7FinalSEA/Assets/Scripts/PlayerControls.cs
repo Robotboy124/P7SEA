@@ -163,7 +163,7 @@ public class PlayerControls : MonoBehaviour
                 dasher = true;
                 dashCount++;
             }
-            if (Input.GetKeyDown(KeyCode.Space) && !grounded && dashCount > 0 && dashing && jumpReady)
+            if (Input.GetKeyUp(KeyCode.LeftShift) && !grounded && dashCount > 0 && jumpReady)
             {
                 dasher = false;
                 rb.AddRelativeForce(Vector3.up*jumpForce, ForceMode.Impulse);
