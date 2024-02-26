@@ -4755,6 +4755,7 @@ GameObject:
   - component: {fileID: 327373954}
   - component: {fileID: 327373955}
   - component: {fileID: 327373956}
+  - component: {fileID: 327373957}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -4808,7 +4809,6 @@ MonoBehaviour:
   maxAutoBurnOut: 20
   burstCount: 0
   updatingBurnOut: 0
-  gravityScale: 3.5
   jumpForce: 13
   parryBlock: {fileID: 2174231092939647118, guid: 0679c67b414b6b3419a8d13b6af94fd0, type: 3}
   maxParry: 4
@@ -5013,6 +5013,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &327373957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327373949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 022c5939913c128468a3011dd1874d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &328598407
 PrefabInstance:
   m_ObjectHideFlags: 0
