@@ -12517,7 +12517,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome to Zettawatt.
+  m_text: Welcome to Zettawatt.<br>WASD to move.<br>If you didn't know that already,
+    switch games. This is your only warning.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -17310,6 +17311,130 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d30cd90cf362424e91792d302671203, type: 3}
+--- !u!1001 &1369353063
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5540400170569972250, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_Size.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540400170569972250, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_Size.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540400170569972250, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_Size.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540400170569972250, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_Center.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384132, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384132, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384132, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_TagString
+      value: Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985975795509384135, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8985975795509384132, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1369353066}
+    - targetCorrespondingSourceObject: {fileID: 8985975795509384132, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1369353065}
+  m_SourcePrefab: {fileID: 100100000, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+--- !u!1 &1369353064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8985975795509384132, guid: 2193d1b9d12208d4a9c7eb39d3f39c80, type: 3}
+  m_PrefabInstance: {fileID: 1369353063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1369353065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369353064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e8d7802a49dd24e85f723ea720fdfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToDestroy:
+  - {fileID: 1018831025}
+--- !u!114 &1369353066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369353064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384c7eba3a5813148be47a616323b31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walls:
+  - {fileID: 855731978}
 --- !u!1 &1373623861
 GameObject:
   m_ObjectHideFlags: 0
@@ -55137,7 +55262,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1156714475895951984, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: tutorial
-      value: Hold SHIFT to dash in midair.
+      value: Hold SHIFT to dash after jumping.
       objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951985, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_Name
@@ -55604,6 +55729,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 871454998}
     m_Modifications:
+    - target: {fileID: 1156714475895951984, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
+      propertyPath: tutorial
+      value: Guess what jump is! (it's SPACEBAR)
+      objectReference: {fileID: 0}
     - target: {fileID: 1156714475895951985, guid: 30b912dc998f5d348b382553dd73e253, type: 3}
       propertyPath: m_Name
       value: Tutorial 1
@@ -56234,6 +56363,7 @@ SceneRoots:
   - {fileID: 17173308}
   - {fileID: 1725227876}
   - {fileID: 380693346}
+  - {fileID: 1369353063}
   - {fileID: 871454998}
   - {fileID: 1304675958}
   - {fileID: 10716562}
